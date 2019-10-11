@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-<!--   달력   -->
+    <!--   달력   -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -21,14 +21,14 @@
                 android:id="@+id/main_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:mcv_calendarMode="month"
                 android:padding="24dp"
                 android:layout_centerInParent="true"
-                app:mcv_selectionColor="@color/colorPrimary">
+                app:mcv_selectionColor="@color/colorPrimary"
+                app:mcv_calendarMode="month" >
             </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
         </RelativeLayout>
     </LinearLayout>
-<!--   버튼   -->
+    <!--   버튼   -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -56,12 +56,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="일기쓰기"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="편지쓰기"/>
 
         <Button
             android:layout_width="0dp"
