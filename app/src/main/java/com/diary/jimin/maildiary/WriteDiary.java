@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -14,6 +16,8 @@ import java.io.FileOutputStream;
 public class WriteDiary extends AppCompatActivity {
     EditText editDiary;
     Spinner emotionSpinner;
+    Button btnSave;
+    String fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +26,19 @@ public class WriteDiary extends AppCompatActivity {
 
         emotionSpinner = findViewById(R.id.spinner_emotion);
         editDiary = findViewById(R.id.edit_diary);
+        btnSave = findViewById(R.id.btn_Save);
 
         ArrayAdapter emotionAdapter = ArrayAdapter.createFromResource(this, R.array.emotion, android.R.layout.simple_spinner_item);
         emotionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         emotionSpinner.setAdapter(emotionAdapter);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // fileName을 넣고 저장 시키는 메소드를 호출
+                saveDiary(fileName);
+            }
+        });
     }
 
     @SuppressLint("WrongConstant")
