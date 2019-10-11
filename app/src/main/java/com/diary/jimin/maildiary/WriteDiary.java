@@ -3,21 +3,24 @@ package com.diary.jimin.maildiary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileOutputStream;
+import java.util.Calendar;
 
-public class WriteDiary extends AppCompatActivity {
+public class WriteDiary extends AppCompatActivity implements View.OnClickListener {
     EditText editDiary;
     Spinner emotionSpinner;
     Button btnSave;
-    String fileName;
+    TextView tvDatePick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,42 +30,41 @@ public class WriteDiary extends AppCompatActivity {
         emotionSpinner = findViewById(R.id.spinner_emotion);
         editDiary = findViewById(R.id.edit_diary);
         btnSave = findViewById(R.id.btn_Save);
+        tvDatePick = findViewById(R.id.viewDatePick);
+
+        Calendar c = Calendar.getInstance();
+        int cYear = c.get(Calendar.YEAR);
+        int cMonth = c.get(Calendar.MONTH)+1;
+        int cDay = c.get(Calendar.DAY_OF_MONTH);
+
+        tvDatePick.setText(cYear + "년 " + cMonth + "월 " + cDay + "일");
+
 
         ArrayAdapter emotionAdapter = ArrayAdapter.createFromResource(this, R.array.emotion, android.R.layout.simple_spinner_item);
         emotionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         emotionSpinner.setAdapter(emotionAdapter);
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // fileName을 넣고 저장 시키는 메소드를 호출
-                saveDiary(fileName);
-            }
-        });
     }
 
-    @SuppressLint("WrongConstant")
-    private void saveDiary(String readDay) {
 
-        FileOutputStream fos = null;
+    @Override
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.btn_Save:
+                try{
+                    String txt = editDiary.getText().toString();
 
-        try {
-            fos = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS); //MODE_WORLD_WRITEABLE
-            String content = editDiary.getText().toString();
+                    FileOutputStream outstream = openFileOutput("test.txt", Activity.MODE_WORLD_WRITEABLE);
 
-            // String.getBytes() = 스트링을 배열형으로 변환?
-            fos.write(content.getBytes());
-            //fos.flush();
-            fos.close();
+                    outstream.write(txt.getBytes());
 
-            // getApplicationContext() = 현재 클래스.this ?
-            Toast.makeText(getApplicationContext(), "일기 저장됨", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) { // Exception - 에러 종류 제일 상위 // FileNotFoundException , IOException
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "저장", Toast.LENGTH_LONG).show();
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(this, "저장실패", Toast.LENGTH_LONG).show();
+                }
         }
-    }
 
+    }
 
 }
