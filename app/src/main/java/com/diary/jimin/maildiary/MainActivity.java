@@ -40,31 +40,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Date currentTime = Calendar.getInstance().getTime();
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-
-        int day = Integer.parseInt(dayFormat.format(currentTime));
-        int month = Integer.parseInt(monthFormat.format(currentTime));
-        int year = Integer.parseInt(yearFormat.format(currentTime));
-
-        Log.d("day : ", year + "," + month + "," + day);
-
-//        mainCalendarView.state().edit()
-//                .setMaximumDate(CalendarDay.from(year,month-1,day))
-//                .commit();
-        mainCalendarView.setTitleFormatter(new TitleFormatter() {
-            @Override
-            public CharSequence format(CalendarDay day) {
-                Date currentTime = Calendar.getInstance().getTime();
-                SimpleDateFormat headerFormat = new SimpleDateFormat("yyyy MM",Locale.getDefault());
-                String monthAndYear = headerFormat.format(currentTime.getTime());
-                Log.d("monthAndYear : ", monthAndYear);
-                return monthAndYear;
-            }
-        });
-//        Log.d("day:", mainCalendarView.get);
     }
 
 }
