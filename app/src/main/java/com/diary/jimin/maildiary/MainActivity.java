@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-=======
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM",Locale.getDefault());
@@ -56,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 .setMaximumDate(CalendarDay.from(year,month-1,day))
                 .commit();
 //        mainCalendarView.setTitleFormatter(new MonthArrayTitleFormatter());
->>>>>>> parent of f577936... Merge branch 'master' of https://github.com/gkskzh100/mailDiary
     }
 
 }
