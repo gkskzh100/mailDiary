@@ -24,8 +24,7 @@
                 android:padding="24dp"
                 android:layout_centerInParent="true"
                 app:mcv_selectionColor="@color/colorPrimary"
-                app:mcv_calendarMode="month"
-                app:mcv_monthLabels="@array/calendar_title">
+                app:mcv_calendarMode="month" >
             </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
         </RelativeLayout>
     </LinearLayout>
