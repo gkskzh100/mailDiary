@@ -1,4 +1,4 @@
-package com.diary.jimin.maildiary;
+package com.diary.jimin.newmaildairy;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.diary.jimin.maildiary", appContext.getPackageName());
+        assertEquals("com.diary.jimin.newmaildairy", appContext.getPackageName());
     }
 }

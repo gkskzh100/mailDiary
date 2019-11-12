@@ -1,4 +1,4 @@
-package com.diary.jimin.maildiary;
+package com.diary.jimin.newmaildairy;
 
 import org.junit.Test;
 

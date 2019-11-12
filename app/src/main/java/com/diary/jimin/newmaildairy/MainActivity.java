@@ -1,14 +1,14 @@
-package com.diary.jimin.maildiary;
+package com.diary.jimin.newmaildairy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class DiaryList extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diary_list);
+        setContentView(R.layout.activity_main);
     }
 }
