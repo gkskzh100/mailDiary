@@ -1,2 +1,2 @@
-include ':app', ':library', 'calendar'
-rootProject.name='mailDiary'
+include ':app'
+rootProject.name='newMailDairy'
