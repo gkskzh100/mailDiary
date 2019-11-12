@@ -13,7 +13,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.util.Calendar;
 
 public class WriteDiary extends AppCompatActivity implements View.OnClickListener {
@@ -39,10 +42,24 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
 
         tvDatePick.setText(cYear + "년 " + cMonth + "월 " + cDay + "일");
 
-
         ArrayAdapter emotionAdapter = ArrayAdapter.createFromResource(this, R.array.emotion, android.R.layout.simple_spinner_item);
         emotionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         emotionSpinner.setAdapter(emotionAdapter);
+
+        File file = new File(getFilesDir(), "mailDiary.txt");
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            StringBuffer buffer = new StringBuffer();
+            String line;
+            while((line = reader.readLine()) != null){
+                buffer.append(line);
+            }
+            editDiary.setText(buffer.toString());
+            reader.close();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
