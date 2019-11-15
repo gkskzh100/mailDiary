@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#bed6e5">
+    android:background="@color/colorPrimary">
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,62 +32,51 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background=""/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/write_et_border">
 
-    <TextView
-        android:id="@+id/viewDatePick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text=""
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_diary"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="16dp"
-        android:background="#DDDDDD"
-        android:ems="10"
-        android:gravity="start|center_vertical"
-        android:inputType="text|textMultiLine|textCapSentences"
-        android:padding="16dp"
-        android:text="" />
+            <TextView
+                android:id="@+id/viewDatePick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
+            <EditText
+                android:id="@+id/edit_diary"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:inputType="text|textMultiLine|textCapSentences"
+                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
+                android:text=""
+                android:textCursorDrawable="@color/colorPrimary"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="right">
+            <Button
+                android:id="@+id/btn_Save"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:text="일기 저장하기"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="emotion"
-            android:textSize="16sp" />
+        </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner_emotion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="저장"
-        android:layout_gravity="right"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"/>
-
+    </FrameLayout>
 
 
 </LinearLayout>
