@@ -46,21 +46,6 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
         emotionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         emotionSpinner.setAdapter(emotionAdapter);
 
-        File file = new File(getFilesDir(), "mailDiary.txt");
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            StringBuffer buffer = new StringBuffer();
-            String line;
-            while((line = reader.readLine()) != null){
-                buffer.append(line);
-            }
-            editDiary.setText(buffer.toString());
-            reader.close();
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
     }
 
 
