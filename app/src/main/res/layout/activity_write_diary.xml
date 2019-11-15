@@ -39,7 +39,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/viewDatePick"
@@ -58,25 +59,20 @@
                 android:layout_height="320dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:inputType="text|textMultiLine|textCapSentences"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
                 android:text=""
-                android:textCursorDrawable="@color/colorPrimary"/>
+                android:textCursorDrawable="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/btn_Save"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:text="일기 저장하기"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"/>
 
         </LinearLayout>
 
     </FrameLayout>
-
 
 </LinearLayout>
