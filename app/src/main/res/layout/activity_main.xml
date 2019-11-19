@@ -60,7 +60,7 @@
                     app:compactCalendarBackgroundColor="#FFFFFF"
                     app:compactCalendarTextColor="#000000"
                     app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
-                    app:compactCalendarCurrentDayBackgroundColor="#fff"
+                    app:compactCalendarCurrentDayBackgroundColor="#00FFFFFF"
                     app:compactCalendarMultiEventIndicatorColor="#fff"
                     />
             </LinearLayout>

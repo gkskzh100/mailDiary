@@ -3,8 +3,11 @@ package com.diary.jimin.newmaildairy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Debug;
 import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private CompactCalendarView calendarView;
     private TextView calendarYearTV;
     private TextView calendarMonthTV;
+
+    private long now = (System.currentTimeMillis() / 100000) * 100000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +46,32 @@ public class MainActivity extends AppCompatActivity {
         calendarView.setFirstDayOfWeek(Calendar.SUNDAY);
         calendarView.setLocale(tz, Locale.KOREAN);
         calendarView.setUseThreeLetterAbbreviation(true);
-        /************************/
+
+
+        Event ev1 = new Event(Color.RED, 1572850800000L);
+        calendarView.addEvent(ev1);
+        Event ev2 = new Event(Color.RED, now);
+        calendarView.addEvent(ev2);
+
+
 
 
         /** MonthChange **/
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
+//                Date date = new Date(1574294400000L);
+//                Log.d("click", "clickDate = " + dateClicked + "date = " + date);
+//                if(dateClicked.toString().compareTo(""+date) == 0) {
+//                    Log.d("click", "맞는거");
+//                } else {
+//                    Log.d("click", "다른거");
+//                }
 
+                //21일 0am == 1574294400000
+                //21일 1am == 1574298000000
+                //21일 2am == 1574301600000
+                //3600000
             }
 
             @Override
@@ -70,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         /** First Date Setting **/
         long now = System.currentTimeMillis();
         Date date = new Date(now);
+        Log.d("click","date : "+date);
         SimpleDateFormat year = new SimpleDateFormat("yyyy",Locale.getDefault());
         SimpleDateFormat month = new SimpleDateFormat("MM",Locale.getDefault());
         String formatYear = year.format(date);
@@ -78,11 +102,16 @@ public class MainActivity extends AppCompatActivity {
         calendarMonthTV.setText(formatMonth + "월");
         /************************/
 
+
         /** Date Interval setting**/
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int height = dm.heightPixels;
         calendarView.setTargetHeight(height/2);
         /*************************/
-
+//        calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
+//        calendarView.setCurrentSelectedDayBackgroundColor(Color.TRANSPARENT);
+        calendarView.shouldDrawIndicatorsBelowSelectedDays(true);
     }
+
+
 }
