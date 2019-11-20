@@ -4,24 +4,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#81A9C7">
 
     <!--   달력   -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="10"
         android:orientation="vertical" >
-
-        <RelativeLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="24dp">
             <TextView
+                android:id="@+id/main_calendar_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019"
+                android:textColor="#ffffff" />
+            <TextView
+                android:id="@+id/main_calendar_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10월"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:padding="24dp"
+            android:background="@drawable/round_corner">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Calendar Space"
-                android:textSize="100dp"/>
-        </RelativeLayout>
+                android:padding="12dp">
+                <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/calendar_view"
+                    android:layout_width="fill_parent"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_height="fill_parent"
+                    app:compactCalendarTextSize="15sp"
+                    app:compactCalendarBackgroundColor="#FFFFFF"
+                    app:compactCalendarTextColor="#000000"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+                    app:compactCalendarCurrentDayBackgroundColor="#00FFFFFF"
+                    app:compactCalendarMultiEventIndicatorColor="#fff"
+                    />
+            </LinearLayout>
+
+
+<!--
+targetheight == 사이 간격
+CurrentSelectedDayBackgroundColor == 선택한 동그라미 배경 색
+CurrentDayBackgroundColor == 현재 날짜 동그라미
+-->
+        </LinearLayout>
     </LinearLayout>
     <!--   버튼   -->
     <LinearLayout
@@ -35,12 +85,14 @@
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/main_mailbox_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="우체통"/>
 
         <Button
+            android:id="@+id/main_write_mail_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -54,6 +106,7 @@
             android:text="일기쓰기"/>
 
         <Button
+            android:id="@+id/main_collect_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
