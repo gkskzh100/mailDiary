@@ -3,6 +3,7 @@ package com.diary.jimin.newmaildairy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +12,8 @@ import android.os.Debug;
 import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
     private CompactCalendarView calendarView;
     private TextView calendarYearTV;
     private TextView calendarMonthTV;
+
+    private Button writeDairyBtn;
+    private Button mailBoxBtn;
+    private Button collectDiaryBtn;
+    private Button writeMailBtn;
+
+
 
     private long now = (System.currentTimeMillis() / 100000) * 100000;
     @Override
@@ -83,6 +93,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /** Write Diary Activity Intent **/
+        writeDairyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),WriteDiary.class);
+                startActivity(intent);
+            }
+        });
+        /** Mail Box Activity Intent **/
+        mailBoxBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        /** Collect Diary Activity Intent **/
+        collectDiaryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        /** Write Mail Activity Intent **/
+        writeMailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
+
 
     }
 
@@ -90,6 +130,12 @@ public class MainActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.calendar_view);
         calendarYearTV = findViewById(R.id.main_calendar_year);
         calendarMonthTV = findViewById(R.id.main_calendar_month);
+        writeDairyBtn = findViewById(R.id.main_write_diary_btn);
+        mailBoxBtn = findViewById(R.id.main_mailbox_btn);
+        collectDiaryBtn = findViewById(R.id.main_collect_btn);
+        writeMailBtn = findViewById(R.id.main_write_mail_btn);
+
+
         /** First Date Setting **/
         long now = System.currentTimeMillis();
         Date date = new Date(now);

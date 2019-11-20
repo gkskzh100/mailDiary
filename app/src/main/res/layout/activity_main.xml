@@ -85,12 +85,14 @@ CurrentDayBackgroundColor == 현재 날짜 동그라미
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/main_mailbox_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="우체통"/>
 
         <Button
+            android:id="@+id/main_write_mail_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -104,6 +106,7 @@ CurrentDayBackgroundColor == 현재 날짜 동그라미
             android:text="일기쓰기"/>
 
         <Button
+            android:id="@+id/main_collect_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
