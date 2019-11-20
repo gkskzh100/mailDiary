@@ -112,15 +112,14 @@ public class MainActivity extends AppCompatActivity {
         collectDiaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),CheckDiaryActivity.class);
-                startActivity(intent);
+
             }
         });
         /** Write Mail Activity Intent **/
         writeMailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                
             }
         });
 
