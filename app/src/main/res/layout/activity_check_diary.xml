@@ -51,7 +51,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/emo_diayr_good"
+                        android:src="@drawable/emo_diary_good"
                         android:layout_gravity="center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
