@@ -1,22 +1,13 @@
 package com.diary.jimin.newmaildairy;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.Debug;
-import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
@@ -26,6 +17,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,14 +32,13 @@ public class MainActivity extends AppCompatActivity {
     private Button writeMailBtn;
 
 
-
     private long now = (System.currentTimeMillis() / 100000) * 100000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
 
 
         /** week language change **/
@@ -62,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
         calendarView.addEvent(ev1);
         Event ev2 = new Event(Color.RED, now);
         calendarView.addEvent(ev2);
-
-
 
 
         /** MonthChange **/
@@ -86,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
-                SimpleDateFormat year = new SimpleDateFormat("yyyy",Locale.getDefault());
-                SimpleDateFormat month = new SimpleDateFormat("MM",Locale.getDefault());
+                SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.getDefault());
+                SimpleDateFormat month = new SimpleDateFormat("MM", Locale.getDefault());
                 calendarYearTV.setText(year.format(firstDayOfNewMonth));
                 calendarMonthTV.setText(month.format(firstDayOfNewMonth) + "월");
             }
@@ -97,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         writeDairyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),WriteDiary.class);
+                Intent intent = new Intent(getApplicationContext(), WriteDiary.class);
                 startActivity(intent);
             }
         });
@@ -114,13 +104,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Intent intent = new Intent(getApplicationContext(),CheckDiaryActivity.class);
 //                startActivity(intent);
+
+                Intent intent = new Intent(getApplicationContext(), CollectDiaryActivity.class);
+                startActivity(intent);
             }
         });
         /** Write Mail Activity Intent **/
         writeMailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
 
@@ -140,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
         /** First Date Setting **/
         long now = System.currentTimeMillis();
         Date date = new Date(now);
-        Log.d("click","date : "+date);
-        SimpleDateFormat year = new SimpleDateFormat("yyyy",Locale.getDefault());
-        SimpleDateFormat month = new SimpleDateFormat("MM",Locale.getDefault());
+        Log.d("click", "date : " + date);
+        SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.getDefault());
+        SimpleDateFormat month = new SimpleDateFormat("MM", Locale.getDefault());
         String formatYear = year.format(date);
         String formatMonth = month.format(date);
         calendarYearTV.setText(formatYear);
@@ -153,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         /** Date Interval setting**/
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int height = dm.heightPixels;
-        calendarView.setTargetHeight(height/2);
+        calendarView.setTargetHeight(height / 2);
         /*************************/
 //        calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
 //        calendarView.setCurrentSelectedDayBackgroundColor(Color.TRANSPARENT);
