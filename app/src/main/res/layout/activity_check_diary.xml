@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CheckDiaryActivity"
-    android:background="#eeeeee"
+    android:background="@color/mainGreyColor"
     android:orientation="vertical"
     android:weightSum="8">
     <LinearLayout
@@ -20,70 +19,79 @@
             android:textColor="#000000"/>
     </LinearLayout>
     <!--    스크롤뷰 추가해야될거같은데   -->
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
-        android:gravity ="center"
-        android:fillViewport="true">
-        <LinearLayout
+        android:orientation="vertical">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_height="wrap_content"
+            android:gravity ="center"
             android:background="@drawable/write_et_border"
-            android:weightSum="5"
-            android:orientation="vertical">
+            android:fillViewport="true"
+            android:layout_weight="1">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:orientation="horizontal">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    tools:targetApi="ice_cream_sandwich" />
+                android:layout_height="match_parent"
+                android:weightSum="5"
+                android:orientation="vertical">
+                <!--      ImageView      -->
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-                    <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        tools:targetApi="ice_cream_sandwich" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/emo_diary_good"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--       textView + Button     -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:paddingLeft="36dp"
+                    android:paddingRight="36dp"
+                    android:paddingTop="12dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/check_diary_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/emo_diary_good"
-                        android:layout_gravity="center_vertical"/>
+                        android:text="@string/textViewTestLong"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="18sp"/>
                 </LinearLayout>
-            </LinearLayout>
-
-            <!--       textView + Button     -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:paddingLeft="36dp"
-                android:paddingRight="36dp"
-                android:paddingTop="12dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/check_diary_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/textViewTestLong"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="18sp"/>
                 <Button
                     android:id="@+id/check_diary_Btn"
-                    android:layout_marginTop="36dp"
+                    android:layout_margin="36dp"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:background="#bed6e5"
                     android:text="받은 답장 보기"
                     android:textSize="14sp"/>
+
             </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+
+    </LinearLayout>
 
 </LinearLayout>

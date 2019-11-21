@@ -3,4 +3,8 @@
     <color name="colorPrimary">#bed6e5</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+<!--  여기부터 사용하긔  -->
+    <color name="mainBlueColor">#bed6e5</color>
+    <color name="mainGreyColor">#eeeeee</color>
 </resources>

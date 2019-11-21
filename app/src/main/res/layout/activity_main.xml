@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="#81A9C7">
+    android:background="@color/mainBlueColor">
 
     <!--   달력   -->
     <LinearLayout
