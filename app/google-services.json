@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1033571028671",
+    "firebase_url": "https://maildiary-dfbb5.firebaseio.com",
+    "project_id": "maildiary-dfbb5",
+    "storage_bucket": "maildiary-dfbb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033571028671:android:5ec3a6c63558687044400a",
+        "android_client_info": {
+          "package_name": "com.diary.jimin.newmaildairy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033571028671-pk1i9jeoj945jo4d4l7pr6mha7htbcdl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOp4yj3GbwT_FR9LYgCjSZKA3arHN4tDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033571028671-pk1i9jeoj945jo4d4l7pr6mha7htbcdl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
