@@ -1,9 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WriteMail">
+    android:orientation="vertical"
+    android:background="@color/mainBlueColor">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:text="편지 쓰기"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginLeft="32dp"
+        android:text="감정 선택하기"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/write_mail_happy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/emo_diary_happy"/>
+
+                <ImageView
+                    android:id="@+id/mail_happy_select_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_select_btn"
+                    android:layout_marginLeft="38dp"/>
+
+                <ImageView
+                    android:id="@+id/mail_happy_unselect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_marginLeft="38dp"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/write_mail_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/emo_diary_good"/>
+
+                <ImageView
+                    android:id="@+id/mail_good_select_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_select_btn"
+                    android:layout_marginLeft="38dp"/>
+
+                <ImageView
+                    android:id="@+id/mail_good_unselect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_marginLeft="38dp"/>
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/write_mail_angry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/emo_diary_angry"/>
+
+                <ImageView
+                    android:id="@+id/mail_angry_select_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_select_btn"
+                    android:layout_marginLeft="38dp"/>
+
+                <ImageView
+                    android:id="@+id/mail_angry_unselect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_marginLeft="38dp"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/write_mail_cry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/emo_diary_cry"/>
+
+                <ImageView
+                    android:id="@+id/mail_cry_select_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_select_btn"
+                    android:layout_marginLeft="38dp"/>
+
+                <ImageView
+                    android:id="@+id/mail_cry_unselect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_marginLeft="38dp"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/write_mail_sad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/emo_diary_sad"/>
+
+                <ImageView
+                    android:id="@+id/mail_sad_select_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_select_btn"
+                    android:layout_marginLeft="38dp"/>
+
+                <ImageView
+                    android:id="@+id/mail_sad_unselect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_marginLeft="38dp"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/write_mail_soso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/emo_diary_soso"/>
+
+                <ImageView
+                    android:id="@+id/mail_soso_select_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_select_btn"
+                    android:layout_marginLeft="38dp"/>
+
+                <ImageView
+                    android:id="@+id/mail_soso_unselect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_marginLeft="38dp"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="링크 추가하기"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/emo_diary_add_btn"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/write_mail_link"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="9dp"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:paddingStart="16dp"
+        android:paddingLeft="16dp"
+        android:singleLine="true"
+        android:background="@drawable/write_mail_link_background"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/write_et_border">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="22dp">
+
+            <EditText
+                android:id="@+id/edit_diary"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="text|textMultiLine|textCapSentences"
+                android:text=""
+                android:textColor="#000000"
+                android:textCursorDrawable="@color/mainGreyColor" />
+
+            <Button
+                android:id="@+id/btn_Save"
+                android:layout_width="296dp"
+                android:layout_height="48dp"
+                android:text="편지 저장하기"
+                android:textColor="#000000"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/write_diary_save_border"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
