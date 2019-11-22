@@ -1,10 +1,13 @@
 package com.diary.jimin.newmaildairy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,19 +18,32 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
-public class WriteDiary extends AppCompatActivity implements View.OnClickListener {
+public class WriteDiary extends AppCompatActivity {
     EditText editDiary;
     Button SaveBtn;
     TextView DatePickTV;
     FrameLayout EmoHappyFL;
     ImageView SelectIV, UnselectIV;
     int i = 0;
+
+    private FirebaseFirestore db;
+    private String clickDateStr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +57,10 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
         EmoHappyFL = findViewById(R.id.write_diary_happy);
         SelectIV = findViewById(R.id.happy_select_btn);
         UnselectIV = findViewById(R.id.happy_unselect_btn);
+
+
+        //firebase setting
+        db = FirebaseFirestore.getInstance();
 
         //select 이미지 visiblity
         UnselectIV.setVisibility(View.VISIBLE);
@@ -64,35 +84,36 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        //날짜 출력
-        Calendar c = Calendar.getInstance();
-        int cYear = c.get(Calendar.YEAR);
-        int cMonth = c.get(Calendar.MONTH)+1;
-        int cDay = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickTV.setText(cYear + "년 " + cMonth + "월 " + cDay + "일");
+        /** 선택한 날짜로 setText **/
+        Intent intent = getIntent();
+        clickDateStr = intent.getStringExtra("clickDateStr");
+
+        final int year = Integer.parseInt(clickDateStr)/10000;
+        final int month = (Integer.parseInt(clickDateStr) - (year * 10000)) / 100;
+        final int day = Integer.parseInt(clickDateStr) % 100;
+
+        DatePickTV.setText(year + "년 " + month + "월 " + day + "일");
+
+
+        SaveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String, String> diary = new HashMap<>();
+                diary.put("date",""+year+month+day);
+                diary.put("content", String.valueOf(editDiary.getText()));
+                diary.put("emoji","good");  //감정 선택한거 반영시킬수 있도록 만들기
+
+                db.collection("diaries").document(clickDateStr).set(diary)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Log.d("firebase", "success");
+                            }
+                        });
+            }
+        });
     }
 
-
-    @Override
-    public void onClick(View v){
-        //일기 저장 (지금 안됨)
-        switch (v.getId()){
-            case R.id.btn_Save:
-                try{
-                    String txt = editDiary.getText().toString();
-
-                    FileOutputStream outstream = openFileOutput("test.txt", Activity.MODE_WORLD_WRITEABLE);
-
-                    outstream.write(txt.getBytes());
-
-                    Toast.makeText(this, "저장", Toast.LENGTH_LONG).show();
-                } catch (Exception e){
-                    e.printStackTrace();
-                    Toast.makeText(this, "저장실패", Toast.LENGTH_LONG).show();
-                }
-        }
-
-    }
 
 }

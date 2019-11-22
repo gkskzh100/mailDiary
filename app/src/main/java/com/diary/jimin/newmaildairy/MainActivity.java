@@ -11,14 +11,23 @@ import android.widget.TextView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private Button writeMailBtn;
 
     private FirebaseFirestore db;
+
+    private String clickDateStr;
+    private Date date;
 
 
     private long now = (System.currentTimeMillis() / 100000) * 100000;
@@ -53,34 +65,24 @@ public class MainActivity extends AppCompatActivity {
         calendarView.setUseThreeLetterAbbreviation(true);
 
 
-        Event ev1 = new Event(Color.RED, 1572850800000L);
-        calendarView.addEvent(ev1);
-        Event ev2 = new Event(Color.RED, now);
-        calendarView.addEvent(ev2);
+//        Event ev1 = new Event(Color.RED, 1572850800000L);
+//        calendarView.addEvent(ev1);
+//        Event ev2 = new Event(Color.RED, now);
+//        calendarView.addEvent(ev2);
 
 
-        /** MonthChange **/
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-//                Date date = new Date(1574294400000L);
-//                Log.d("click", "clickDate = " + dateClicked + "date = " + date);
-//                if(dateClicked.toString().compareTo(""+date) == 0) {
-//                    Log.d("click", "맞는거");
-//                } else {
-//                    Log.d("click", "다른거");
-//                }
-
-                //21일 0am == 1574294400000
-                //21일 1am == 1574298000000
-                //21일 2am == 1574301600000
-                //3600000
-
+                /** click 한 날짜 String 으로 바꿈 **/
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+                clickDateStr = dateFormat.format(dateClicked);
 
             }
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
+                /** MonthChange **/
                 SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.getDefault());
                 SimpleDateFormat month = new SimpleDateFormat("MM", Locale.getDefault());
                 calendarYearTV.setText(year.format(firstDayOfNewMonth));
@@ -92,7 +94,16 @@ public class MainActivity extends AppCompatActivity {
         writeDairyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getApplicationContext(), WriteDiary.class);
+                if (clickDateStr != null)
+                    intent.putExtra("clickDateStr",clickDateStr);
+                else {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+                    date = new Date(now);
+                    clickDateStr = dateFormat.format(date);
+                    intent.putExtra("clickDateStr",clickDateStr);
+                }
                 startActivity(intent);
             }
         });
@@ -137,11 +148,38 @@ public class MainActivity extends AppCompatActivity {
         /** Firebase setting **/
         db = FirebaseFirestore.getInstance();
 
+        final List<Event> eventList = new ArrayList<>();
 
+
+        /** Read Firebase **/
+        db.collection("diaries")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("dbSuccess", document.getId() + " => " + document.getData());
+
+                                DateFormat df = new SimpleDateFormat("yyyyMMdd");
+                                Date d;
+                                try {
+                                    d = df.parse(document.getId());
+                                    /** Event Color Change**/
+                                    Event event = new Event(Color.RED,d.getTime());
+                                    eventList.add(event);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        calendarView.addEvents(eventList);
+                    }
+                });
         /** First Date Setting **/
         long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        Log.d("click", "date : " + date);
+        date = new Date(now);
+//        Log.d("click", "date : " + date);
         SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.getDefault());
         SimpleDateFormat month = new SimpleDateFormat("MM", Locale.getDefault());
         String formatYear = year.format(date);
