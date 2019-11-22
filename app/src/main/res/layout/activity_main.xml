@@ -7,8 +7,6 @@
     tools:context=".MainActivity"
     android:background="@color/mainBlueColor">
 
-    <!-- I love 지민 S2-->
-
     <!--   달력   -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,12 +31,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2019"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 android:textColor="#ffffff" />
             <TextView
                 android:id="@+id/main_calendar_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10월"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:textColor="#ffffff" />
         </LinearLayout>
         <LinearLayout
