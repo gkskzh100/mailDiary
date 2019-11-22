@@ -2,12 +2,16 @@ package com.diary.jimin.newmaildairy;
 
 
 import android.content.ClipData;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,13 +27,16 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
         protected ImageView emoji;
         protected TextView date;
         protected TextView content;
+        protected LinearLayout layout;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            this.emoji = (ImageView) itemView.findViewById(R.id.item_emo_image);
-            this.date = (TextView) itemView.findViewById(R.id.item_date_text);
-            this.date = (TextView) itemView.findViewById(R.id.item_content_text);
+            this.emoji = itemView.findViewById(R.id.item_emo_image);
+            this.date = itemView.findViewById(R.id.item_date_text);
+            this.content = itemView.findViewById(R.id.item_content_text);
+            this.layout = itemView.findViewById(R.id.item_layout);
+
         }
     }
 
@@ -52,6 +59,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+
+        holder.layout.setMinimumHeight(360);//조절해야된다
+
         holder.emoji.setScaleType(ImageView.ScaleType.FIT_CENTER);
         holder.date.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
         holder.content.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
@@ -66,5 +76,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
     public int getItemCount() {
         return (null != mData ? mData.size() : 0);
     }
+
+
 
 }

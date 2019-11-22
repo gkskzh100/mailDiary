@@ -65,12 +65,6 @@ public class MainActivity extends AppCompatActivity {
         calendarView.setUseThreeLetterAbbreviation(true);
 
 
-//        Event ev1 = new Event(Color.RED, 1572850800000L);
-//        calendarView.addEvent(ev1);
-//        Event ev2 = new Event(Color.RED, now);
-//        calendarView.addEvent(ev2);
-
-
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
@@ -99,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 if (clickDateStr != null)
                     intent.putExtra("clickDateStr",clickDateStr);
                 else {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMDD", Locale.getDefault());
                     date = new Date(now);
                     clickDateStr = dateFormat.format(date);
                     intent.putExtra("clickDateStr",clickDateStr);
@@ -176,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         calendarView.addEvents(eventList);
                     }
                 });
+
         /** First Date Setting **/
         long now = System.currentTimeMillis();
         date = new Date(now);
