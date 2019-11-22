@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mailBoxBtn;
     private Button collectDiaryBtn;
     private Button writeMailBtn;
+
+    private FirebaseFirestore db;
 
 
     private long now = (System.currentTimeMillis() / 100000) * 100000;
@@ -72,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 //21일 1am == 1574298000000
                 //21일 2am == 1574301600000
                 //3600000
+
+
             }
 
             @Override
@@ -102,8 +107,6 @@ public class MainActivity extends AppCompatActivity {
         collectDiaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(),CheckDiaryActivity.class);
-//                startActivity(intent);
 
                 Intent intent = new Intent(getApplicationContext(), CollectDiaryActivity.class);
                 startActivity(intent);
@@ -118,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
     private void init() {
@@ -128,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
         mailBoxBtn = findViewById(R.id.main_mailbox_btn);
         collectDiaryBtn = findViewById(R.id.main_collect_btn);
         writeMailBtn = findViewById(R.id.main_write_mail_btn);
+
+        /** Firebase setting **/
+        db = FirebaseFirestore.getInstance();
 
 
         /** First Date Setting **/
