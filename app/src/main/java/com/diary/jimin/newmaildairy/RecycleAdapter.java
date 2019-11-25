@@ -1,11 +1,6 @@
 package com.diary.jimin.newmaildairy;
 
 
-import android.content.ClipData;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.Drawable;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
