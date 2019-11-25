@@ -25,7 +25,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -100,6 +102,21 @@ public class WriteDiary extends AppCompatActivity {
         final int day = Integer.parseInt(clickDateStr) % 100;
 
         DatePickTV.setText(year + "년 " + month + "월 " + day + "일");
+
+
+        /** 일기쓰기 할 때 DB에 데이터가 있는지 없는지 확인 **/
+        db.collection("diaries").document(clickDateStr)
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()) {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if(documentSnapshot.exists()) {     //DB에 데이터가 있다면
+                        editDiary.setText(""+documentSnapshot.get("content"));  //데이터 가져와서 Text에 넣어줌
+                    }
+                }
+            }
+        });
 
 
         SaveBtn.setOnClickListener(new View.OnClickListener() {
