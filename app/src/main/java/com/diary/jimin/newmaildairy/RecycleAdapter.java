@@ -3,6 +3,7 @@ package com.diary.jimin.newmaildairy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -120,8 +121,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
+        DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
 
-        holder.layout.setMinimumHeight(360);//조절해야된다
+        int height = dm.heightPixels;
+
+        holder.layout.setMinimumHeight(height/7);//조절해야된다
 
         holder.emoji.setScaleType(ImageView.ScaleType.FIT_CENTER);
         holder.date.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
