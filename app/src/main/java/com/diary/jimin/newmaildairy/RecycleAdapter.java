@@ -122,10 +122,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
         DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
-
         int height = dm.heightPixels;
 
-        holder.layout.setMinimumHeight(height/7);//조절해야된다
+        holder.layout.setMinimumHeight(height/7);
 
         holder.emoji.setScaleType(ImageView.ScaleType.FIT_CENTER);
         holder.date.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
