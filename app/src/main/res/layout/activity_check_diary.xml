@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,12 +53,23 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" >
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
                         <ImageView
+                            android:id="@+id/check_diary_img"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@drawable/emo_diary_good"
                             android:layout_gravity="center_vertical"/>
+                        <TextView
+                            android:id="@+id/check_diary_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2019.11.20"
+                            android:textColor="#000000"
+                            android:textSize="18sp"/>
+
                     </LinearLayout>
                 </LinearLayout>
 

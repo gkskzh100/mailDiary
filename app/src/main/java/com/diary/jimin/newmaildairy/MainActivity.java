@@ -157,11 +157,22 @@ public class MainActivity extends AppCompatActivity {
 
                                 DateFormat df = new SimpleDateFormat("yyyyMMdd");
                                 Date d;
+                                String emoji = ""+document.get("emoji");
                                 try {
                                     d = df.parse(document.getId());
                                     /** Event Color Change**/
-                                    Event event = new Event(Color.RED,d.getTime());
-                                    eventList.add(event);
+                                    if(emoji.equals("angry"))
+                                        eventList.add(new Event(getResources().getColor(R.color.calendarAngryColor),d.getTime()));
+                                    else if (emoji.equals("cry"))
+                                        eventList.add(new Event(getResources().getColor(R.color.calendarCryColor),d.getTime()));
+                                    else if (emoji.equals("good"))
+                                        eventList.add(new Event(getResources().getColor(R.color.calendarGoodColor),d.getTime()));
+                                    else if (emoji.equals("happy"))
+                                        eventList.add(new Event(getResources().getColor(R.color.calendarHappyColor),d.getTime()));
+                                    else if (emoji.equals("sad"))
+                                        eventList.add(new Event(getResources().getColor(R.color.calendarSadColor),d.getTime()));
+                                    else if (emoji.equals("soso"))
+                                        eventList.add(new Event(getResources().getColor(R.color.calendarSosoColor),d.getTime()));
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
