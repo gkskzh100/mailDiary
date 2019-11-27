@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_gravity="center"
-        android:text="일기 쓰기"
+        android:text="편지 쓰기"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"/>
@@ -37,7 +37,7 @@
             android:orientation="horizontal">
 
             <FrameLayout
-                android:id="@+id/write_diary_happy"
+                android:id="@+id/write_mail_happy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -47,14 +47,14 @@
                     android:src="@drawable/emo_diary_happy"/>
 
                 <ImageView
-                    android:id="@+id/happy_select_btn"
+                    android:id="@+id/mail_happy_select_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_select_btn"
                     android:layout_marginLeft="38dp"/>
 
                 <ImageView
-                    android:id="@+id/happy_unselect_btn"
+                    android:id="@+id/mail_happy_unselect_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_unselect_btn"
@@ -63,7 +63,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_diary_good"
+                android:id="@+id/write_mail_good"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
@@ -74,14 +74,14 @@
                     android:src="@drawable/emo_diary_good"/>
 
                 <ImageView
-                    android:id="@+id/good_select_btn"
+                    android:id="@+id/mail_good_select_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_select_btn"
                     android:layout_marginLeft="38dp"/>
 
                 <ImageView
-                    android:id="@+id/good_unselect_btn"
+                    android:id="@+id/mail_good_unselect_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_unselect_btn"
@@ -91,7 +91,7 @@
 
 
             <FrameLayout
-                android:id="@+id/write_diary_angry"
+                android:id="@+id/write_mail_angry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
@@ -102,14 +102,14 @@
                     android:src="@drawable/emo_diary_angry"/>
 
                 <ImageView
-                    android:id="@+id/angry_select_btn"
+                    android:id="@+id/mail_angry_select_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_select_btn"
                     android:layout_marginLeft="38dp"/>
 
                 <ImageView
-                    android:id="@+id/angry_unselect_btn"
+                    android:id="@+id/mail_angry_unselect_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_unselect_btn"
@@ -118,7 +118,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_diary_cry"
+                android:id="@+id/write_mail_cry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
@@ -129,14 +129,14 @@
                     android:src="@drawable/emo_diary_cry"/>
 
                 <ImageView
-                    android:id="@+id/cry_select_btn"
+                    android:id="@+id/mail_cry_select_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_select_btn"
                     android:layout_marginLeft="38dp"/>
 
                 <ImageView
-                    android:id="@+id/cry_unselect_btn"
+                    android:id="@+id/mail_cry_unselect_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_unselect_btn"
@@ -145,7 +145,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_diary_sad"
+                android:id="@+id/write_mail_sad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
@@ -156,14 +156,14 @@
                     android:src="@drawable/emo_diary_sad"/>
 
                 <ImageView
-                    android:id="@+id/sad_select_btn"
+                    android:id="@+id/mail_sad_select_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_select_btn"
                     android:layout_marginLeft="38dp"/>
 
                 <ImageView
-                    android:id="@+id/sad_unselect_btn"
+                    android:id="@+id/mail_sad_unselect_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_unselect_btn"
@@ -172,7 +172,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_diary_soso"
+                android:id="@+id/write_mail_soso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
@@ -183,14 +183,14 @@
                     android:src="@drawable/emo_diary_soso"/>
 
                 <ImageView
-                    android:id="@+id/soso_select_btn"
+                    android:id="@+id/mail_soso_select_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_select_btn"
                     android:layout_marginLeft="38dp"/>
 
                 <ImageView
-                    android:id="@+id/soso_unselect_btn"
+                    android:id="@+id/mail_soso_unselect_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/emo_diary_unselect_btn"
@@ -201,6 +201,43 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="링크 추가하기"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/emo_diary_add_btn"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/write_mail_link"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="9dp"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:paddingStart="16dp"
+        android:paddingLeft="16dp"
+        android:singleLine="true"
+        android:background="@drawable/write_mail_link_background"/>
 
 
     <FrameLayout
@@ -213,18 +250,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/viewDatePick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:text=""
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#000000"/>
+            android:gravity="center_horizontal"
+            android:layout_marginTop="22dp">
 
             <EditText
                 android:id="@+id/edit_diary"
@@ -241,7 +268,7 @@
                 android:id="@+id/btn_Save"
                 android:layout_width="296dp"
                 android:layout_height="48dp"
-                android:text="일기 저장하기"
+                android:text="편지 저장하기"
                 android:textColor="#000000"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/write_diary_save_border"/>
