@@ -53,7 +53,7 @@ public class WriteDiary extends AppCompatActivity {
     private String clickDateStr;
 
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

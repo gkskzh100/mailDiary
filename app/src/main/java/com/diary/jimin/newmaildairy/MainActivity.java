@@ -102,12 +102,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         /** Mail Box Activity Intent **/
+
         mailBoxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
+
         /** Collect Diary Activity Intent **/
         collectDiaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
         writeMailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), WriteMail.class);
+                startActivity(intent);
             }
         });
 
