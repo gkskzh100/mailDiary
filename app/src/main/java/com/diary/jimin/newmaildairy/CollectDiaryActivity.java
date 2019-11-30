@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.github.sundeepk.compactcalendarview.domain.Event;
@@ -41,6 +43,18 @@ public class CollectDiaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_collect_diary);
 
         init();
+
+        mAdapter.setOnItemClickListener(new RecycleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                /** recyclerView Item Click이벤트를 여기서 처리함 **/
+
+//                Intent intent = new Intent(getApplicationContext(),CheckDiaryActivity.class);
+//                startActivity(intent);
+
+
+            }
+        });
     }
 
     private void init () {
@@ -50,7 +64,7 @@ public class CollectDiaryActivity extends AppCompatActivity {
 
         mItemList = new ArrayList<>();
 
-        mAdapter = new RecycleAdapter(mItemList);
+        mAdapter = new RecycleAdapter(getApplicationContext(),mItemList);
         recyclerView.setAdapter(mAdapter);
 
 
@@ -70,7 +84,26 @@ public class CollectDiaryActivity extends AppCompatActivity {
                                 if(document.get("emoji").equals("good")) {
                                     ItemDictionary itemDictionary = new ItemDictionary(R.drawable.emo_diary_good,""+document.get("date"),""+document.get("content"));
                                     mItemList.add(i,itemDictionary);
-//                                    Log.d("dbSuccess", ""+mAdapter.getItemCount());
+                                    mAdapter.notifyItemInserted(i);
+                                } else if(document.get("emoji").equals("angry")) {
+                                    ItemDictionary itemDictionary = new ItemDictionary(R.drawable.emo_diary_angry,""+document.get("date"),""+document.get("content"));
+                                    mItemList.add(i,itemDictionary);
+                                    mAdapter.notifyItemInserted(i);
+                                } else if(document.get("emoji").equals("cry")) {
+                                    ItemDictionary itemDictionary = new ItemDictionary(R.drawable.emo_diary_cry,""+document.get("date"),""+document.get("content"));
+                                    mItemList.add(i,itemDictionary);
+                                    mAdapter.notifyItemInserted(i);
+                                }  else if(document.get("emoji").equals("happy")) {
+                                    ItemDictionary itemDictionary = new ItemDictionary(R.drawable.emo_diary_happy,""+document.get("date"),""+document.get("content"));
+                                    mItemList.add(i,itemDictionary);
+                                    mAdapter.notifyItemInserted(i);
+                                } else if(document.get("emoji").equals("sad")) {
+                                    ItemDictionary itemDictionary = new ItemDictionary(R.drawable.emo_diary_sad,""+document.get("date"),""+document.get("content"));
+                                    mItemList.add(i,itemDictionary);
+                                    mAdapter.notifyItemInserted(i);
+                                } else if(document.get("emoji").equals("soso")) {
+                                    ItemDictionary itemDictionary = new ItemDictionary(R.drawable.emo_diary_soso,""+document.get("date"),""+document.get("content"));
+                                    mItemList.add(i,itemDictionary);
                                     mAdapter.notifyItemInserted(i);
                                 }
                                 i++;

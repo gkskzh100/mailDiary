@@ -7,4 +7,12 @@
 <!--  여기부터 사용하긔  -->
     <color name="mainBlueColor">#bed6e5</color>
     <color name="mainGreyColor">#eeeeee</color>
+
+    <color name="calendarCryColor">#d8d3ed</color>
+    <color name="calendarGoodColor">#beddba</color>
+    <color name="calendarSadColor">#cce0ea</color>
+    <color name="calendarSosoColor">#cccccc</color>
+    <color name="calendarAngryColor">#ead0d0</color>
+    <color name="calendarHappyColor">#ede5c3</color>
+
 </resources>
