@@ -25,7 +25,7 @@
         android:textStyle="bold"
         android:textColor="#FFFFFF"/>
 
-    <ScrollView
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -39,7 +39,8 @@
             <FrameLayout
                 android:id="@+id/write_diary_happy"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp">
 
                 <ImageView
                     android:layout_width="56dp"
@@ -175,7 +176,8 @@
                 android:id="@+id/write_diary_soso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp">
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp">
 
                 <ImageView
                     android:layout_width="56dp"
@@ -200,7 +202,7 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </HorizontalScrollView>
 
 
     <FrameLayout
