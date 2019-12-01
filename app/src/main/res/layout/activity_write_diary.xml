@@ -204,45 +204,66 @@
 
     </HorizontalScrollView>
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/write_et_border">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/write_et_border"
+        android:layout_marginTop="24dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/viewDatePick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/edit_diary"
-                android:layout_width="320dp"
-                android:layout_height="360dp"
-                android:layout_marginTop="24dp"
-                android:ems="10"
-                android:gravity="top|left"
-                android:inputType="text|textMultiLine|textCapSentences"
-                android:lineHeight="33dp"
-                android:text=""
-                android:textColor="#000000"
-                android:textCursorDrawable="@color/mainGreyColor"
-                android:background="@drawable/write_background"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/btn_Save"
-                android:layout_width="296dp"
-                android:layout_height="48dp"
-                android:text="편지 저장하기"
-                android:textColor="#000000"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/write_diary_save_border"/>
+                <EditText
+                    android:id="@+id/edit_diary"
+                    android:layout_width="320dp"
+                    android:layout_height="360dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:gravity="top|left"
+                    android:inputType="text|textMultiLine|textCapSentences"
+                    android:lineHeight="33dp"
+                    android:text=""
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@color/mainGreyColor"
+                    android:background="@drawable/write_background"/>
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btn_Save"
+                    android:layout_width="296dp"
+                    android:layout_height="48dp"
+                    android:text="편지 저장하기"
+                    android:textColor="#000000"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/write_diary_save_border"/>
 
-    </ScrollView>
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
