@@ -37,171 +37,123 @@
             android:orientation="horizontal">
 
             <FrameLayout
-                android:id="@+id/write_mail_happy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_mail_happy"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_happy"/>
+                    android:background="@drawable/emo_diary_happy"/>
 
-                <ImageView
+                <Button
                     android:id="@+id/mail_happy_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/mail_happy_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
-            <Button
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginLeft="12dp"
-                android:background="@drawable/emo_selector_btn"/>
-
             <FrameLayout
-                android:id="@+id/write_mail_good"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_mail_good"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_good"/>
+                    android:background="@drawable/emo_diary_good"/>
 
-                <ImageView
+                <Button
                     android:id="@+id/mail_good_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/mail_good_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
 
             <FrameLayout
-                android:id="@+id/write_mail_angry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_mail_angry"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_angry"/>
+                    android:background="@drawable/emo_diary_angry"/>
 
-                <ImageView
+                <Button
                     android:id="@+id/mail_angry_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/mail_angry_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_mail_cry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_mail_cry"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_cry"/>
+                    android:background="@drawable/emo_diary_cry"/>
 
-                <ImageView
+                <Button
                     android:id="@+id/mail_cry_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/mail_cry_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_mail_sad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_mail_sad"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_sad"/>
+                    android:background="@drawable/emo_diary_sad"/>
 
-                <ImageView
+                <Button
                     android:id="@+id/mail_sad_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/mail_sad_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_mail_soso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_mail_soso"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_soso"/>
+                    android:background="@drawable/emo_diary_soso"/>
 
-                <ImageView
+                <Button
                     android:id="@+id/mail_soso_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/mail_soso_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>

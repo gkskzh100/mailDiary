@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private SignInButton loginBtn;
     private LinearLayout space;
+    private ImageView loginImg;
 
     private GoogleApiClient googleApiClient;
     private GoogleSignInOptions googleSignInOptions;
@@ -63,6 +65,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
+
+                    /** 로그인 한번 인증했으면 바로 넘어감 **/
                     Log.d("loginch", "onAuthStateChanged:signed_in:" + user.getUid());
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
@@ -83,11 +87,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private void init() {
         loginBtn = findViewById(R.id.login_button);
         space = findViewById(R.id.login_space);
+        loginImg = findViewById(R.id.login_img);
 
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int height = dm.heightPixels;
+        int width = dm.widthPixels;
 
         space.setMinimumHeight(height/3);
+
+        loginImg.setMaxHeight((int) (height*0.875));
+        loginImg.setMaxWidth((int) (width*0.375));
+
 
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))

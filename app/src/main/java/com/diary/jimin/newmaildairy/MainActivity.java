@@ -13,6 +13,8 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -42,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
     private Button writeMailBtn;
 
     private FirebaseFirestore db;
+    private FirebaseUser firebaseUser;
 
+    private String userId;
     private String clickDateStr;
     private Date date;
+
 
 
     private long now = (System.currentTimeMillis() / 100000) * 100000;
@@ -53,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        /** Get User Id **/
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            userId = firebaseUser.getUid();
+        }
+
         init();
 
 
@@ -93,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 if (clickDateStr != null)
                     intent.putExtra("clickDateStr",clickDateStr);
                 else {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMDD", Locale.getDefault());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
                     date = new Date(now);
                     clickDateStr = dateFormat.format(date);
                     intent.putExtra("clickDateStr",clickDateStr);
@@ -114,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         collectDiaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(getApplicationContext(), CollectDiaryActivity.class);
                 startActivity(intent);
             }
@@ -142,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         collectDiaryBtn = findViewById(R.id.main_collect_btn);
         writeMailBtn = findViewById(R.id.main_write_mail_btn);
 
+
         /** Firebase setting **/
         db = FirebaseFirestore.getInstance();
 
@@ -149,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         /** Read Firebase **/
-        db.collection("diaries")
+        db.collection(userId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -188,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         /** First Date Setting **/
         long now = System.currentTimeMillis();
         date = new Date(now);
-//        Log.d("click", "date : " + date);
         SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.getDefault());
         SimpleDateFormat month = new SimpleDateFormat("MM", Locale.getDefault());
         String formatYear = year.format(date);
@@ -203,8 +215,8 @@ public class MainActivity extends AppCompatActivity {
         int height = dm.heightPixels;
         calendarView.setTargetHeight(height / 2);
         /*************************/
-//        calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
-//        calendarView.setCurrentSelectedDayBackgroundColor(Color.TRANSPARENT);
+
+
         calendarView.shouldDrawIndicatorsBelowSelectedDays(true);
     }
 
