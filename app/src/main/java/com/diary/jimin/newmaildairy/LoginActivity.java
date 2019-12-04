@@ -63,6 +63,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
+
+                    /** 로그인 한번 인증했으면 바로 넘어감 **/
                     Log.d("loginch", "onAuthStateChanged:signed_in:" + user.getUid());
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);

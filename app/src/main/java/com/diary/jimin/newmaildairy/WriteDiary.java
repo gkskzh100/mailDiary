@@ -24,6 +24,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -51,6 +53,8 @@ public class WriteDiary extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private String clickDateStr;
+    private FirebaseUser firebaseUser;
+    private String userId;
 
 
 
@@ -67,6 +71,11 @@ public class WriteDiary extends AppCompatActivity {
         SelectIV = findViewById(R.id.happy_select_btn);
         UnselectIV = findViewById(R.id.happy_unselect_btn);
 
+        /** Get User Id **/
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            userId = firebaseUser.getUid();
+        }
 
         //firebase setting
         db = FirebaseFirestore.getInstance();
@@ -106,7 +115,7 @@ public class WriteDiary extends AppCompatActivity {
 
 
         /** 일기쓰기 할 때 DB에 데이터가 있는지 없는지 확인 **/
-        db.collection("diaries").document(clickDateStr)
+        db.collection(userId).document(clickDateStr)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -114,6 +123,9 @@ public class WriteDiary extends AppCompatActivity {
                     DocumentSnapshot documentSnapshot = task.getResult();
                     if(documentSnapshot.exists()) {     //DB에 데이터가 있다면
                         editDiary.setText(""+documentSnapshot.get("content"));  //데이터 가져와서 Text에 넣어줌
+
+
+                        //감정도 선택되게 만들어야됨
                     }
                 }
             }
@@ -127,9 +139,13 @@ public class WriteDiary extends AppCompatActivity {
                 Map<String, String> diary = new HashMap<>();
                 diary.put("date",clickDateStr);
                 diary.put("content", String.valueOf(editDiary.getText()));
-                diary.put("emoji","good");  //감정 선택한거 반영시킬수 있도록 만들기
 
-                db.collection("diaries").document(clickDateStr).set(diary)
+
+
+                diary.put("emoji","good");
+                //감정 선택한거 반영시킬수 있도록 만들기
+
+                db.collection(userId).document(clickDateStr).set(diary)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {

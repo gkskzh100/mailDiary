@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,11 +38,21 @@ public class CollectDiaryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private FirebaseFirestore db;
+    private FirebaseUser firebaseUser;
+
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect_diary);
+
+
+        /** Get User Id **/
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            userId = firebaseUser.getUid();
+        }
 
         init();
 
@@ -73,7 +85,7 @@ public class CollectDiaryActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        db.collection("diaries")
+        db.collection(userId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
