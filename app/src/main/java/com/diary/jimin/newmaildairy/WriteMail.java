@@ -12,8 +12,8 @@ import android.widget.ImageView;
 
 public class WriteMail extends AppCompatActivity implements View.OnClickListener{
     int i = 0;
-    Button HappySelect,GoodSelect, CrySelect, SadSelect, AngrySelect, SosoSelect;
-    Button  EmoHappy, EmoGood, EmoCry, EmoSad, EmoAngry, EmoSoso;
+    private Button HappySelect,GoodSelect, CrySelect, SadSelect, AngrySelect, SosoSelect;
+    private Button  EmoHappy, EmoGood, EmoCry, EmoSad, EmoAngry, EmoSoso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
