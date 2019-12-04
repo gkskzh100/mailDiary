@@ -2,6 +2,7 @@ package com.diary.jimin.newmaildairy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -43,20 +44,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WriteDiary extends AppCompatActivity {
+public class WriteDiary extends AppCompatActivity implements View.OnClickListener{
     EditText editDiary;
     Button SaveBtn;
     TextView DatePickTV;
-    FrameLayout EmoHappyFL;
-    ImageView SelectIV, UnselectIV;
+    private Button HappySelect,GoodSelect, CrySelect, SadSelect, AngrySelect, SosoSelect;
+    private Button  EmoHappy, EmoGood, EmoCry, EmoSad, EmoAngry, EmoSoso;
     int i = 0;
 
     private FirebaseFirestore db;
     private String clickDateStr;
     private FirebaseUser firebaseUser;
     private String userId;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +66,38 @@ public class WriteDiary extends AppCompatActivity {
         editDiary = findViewById(R.id.edit_diary);
         SaveBtn = findViewById(R.id.btn_Save);
         DatePickTV = findViewById(R.id.viewDatePick);
-        EmoHappyFL = findViewById(R.id.write_diary_happy);
-        SelectIV = findViewById(R.id.happy_select_btn);
-        UnselectIV = findViewById(R.id.happy_unselect_btn);
+
+        /**findViewById**/
+        HappySelect = findViewById(R.id.diary_happy_select_btn);
+        GoodSelect = findViewById(R.id.diary_good_select_btn);
+        CrySelect = findViewById(R.id.diary_cry_select_btn);
+        SadSelect = findViewById(R.id.diary_sad_select_btn);
+        AngrySelect = findViewById(R.id.diary_angry_select_btn);
+        SosoSelect = findViewById(R.id.diary_soso_select_btn);
+
+        EmoHappy = findViewById(R.id.write_diary_happy);
+        EmoGood = findViewById(R.id.write_diary_good);
+        EmoCry = findViewById(R.id.write_diary_cry);
+        EmoSad = findViewById(R.id.write_diary_sad);
+        EmoAngry = findViewById(R.id.write_diary_angry);
+        EmoSoso = findViewById(R.id.write_diary_soso);
+
+        EmoHappy.setOnClickListener(this);
+        EmoGood.setOnClickListener(this);
+        EmoCry.setOnClickListener(this);
+        EmoSad.setOnClickListener(this);
+        EmoAngry.setOnClickListener(this);
+        EmoSoso.setOnClickListener(this);
+
+        /**Select 버튼 위로 올리기**/
+        ViewCompat.setTranslationZ(HappySelect, 1);
+        ViewCompat.setTranslationZ(GoodSelect, 1);
+        ViewCompat.setTranslationZ(CrySelect, 1);
+        ViewCompat.setTranslationZ(SadSelect, 1);
+        ViewCompat.setTranslationZ(AngrySelect, 1);
+        ViewCompat.setTranslationZ(SosoSelect, 1);
+
+
 
         /** Get User Id **/
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
@@ -79,28 +107,6 @@ public class WriteDiary extends AppCompatActivity {
 
         //firebase setting
         db = FirebaseFirestore.getInstance();
-
-        //select 이미지 visiblity
-        UnselectIV.setVisibility(View.VISIBLE);
-        SelectIV.setVisibility(View.INVISIBLE);
-
-        //select 이미지 전환
-        EmoHappyFL.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view){
-                i = 1 - i;
-
-                if(i == 0){
-                    SelectIV.setVisibility(View.VISIBLE);
-                    UnselectIV.setVisibility(View.INVISIBLE);
-                }
-                else{
-                    SelectIV.setVisibility(View.INVISIBLE);
-                    UnselectIV.setVisibility(View.VISIBLE);
-                }
-            }
-        });
 
 
         /** 선택한 날짜로 setText **/
@@ -154,6 +160,109 @@ public class WriteDiary extends AppCompatActivity {
                         });
             }
         });
+    }
+
+    @Override
+    public void onClick(View v){
+        i = 1 - i;
+
+        /**select 이미지 전환**/
+        switch(v.getId()){
+            case R.id.write_diary_happy :
+                HappySelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                GoodSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                CrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SadSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                AngrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SosoSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+
+                ViewCompat.setTranslationZ(HappySelect, 1);
+                ViewCompat.setTranslationZ(GoodSelect, 1);
+                ViewCompat.setTranslationZ(CrySelect, 1);
+                ViewCompat.setTranslationZ(SadSelect, 1);
+                ViewCompat.setTranslationZ(AngrySelect, 1);
+                ViewCompat.setTranslationZ(SosoSelect, 1);
+                break;
+            case R.id.write_diary_good :
+                HappySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                GoodSelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                CrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SadSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                AngrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SosoSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+
+                ViewCompat.setTranslationZ(HappySelect, 1);
+                ViewCompat.setTranslationZ(GoodSelect, 1);
+                ViewCompat.setTranslationZ(CrySelect, 1);
+                ViewCompat.setTranslationZ(SadSelect, 1);
+                ViewCompat.setTranslationZ(AngrySelect, 1);
+                ViewCompat.setTranslationZ(SosoSelect, 1);
+                break;
+
+            case R.id.write_diary_cry :
+                HappySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                GoodSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                CrySelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                SadSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                AngrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SosoSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+
+                ViewCompat.setTranslationZ(HappySelect, 1);
+                ViewCompat.setTranslationZ(GoodSelect, 1);
+                ViewCompat.setTranslationZ(CrySelect, 1);
+                ViewCompat.setTranslationZ(SadSelect, 1);
+                ViewCompat.setTranslationZ(AngrySelect, 1);
+                ViewCompat.setTranslationZ(SosoSelect, 1);
+                break;
+
+            case R.id.write_diary_sad :
+                HappySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                GoodSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                CrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SadSelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                AngrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SosoSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+
+                ViewCompat.setTranslationZ(HappySelect, 1);
+                ViewCompat.setTranslationZ(GoodSelect, 1);
+                ViewCompat.setTranslationZ(CrySelect, 1);
+                ViewCompat.setTranslationZ(SadSelect, 1);
+                ViewCompat.setTranslationZ(AngrySelect, 1);
+                ViewCompat.setTranslationZ(SosoSelect, 1);
+                break;
+
+            case R.id.write_diary_angry :
+                HappySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                GoodSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                CrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SadSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                AngrySelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                SosoSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+
+                ViewCompat.setTranslationZ(HappySelect, 1);
+                ViewCompat.setTranslationZ(GoodSelect, 1);
+                ViewCompat.setTranslationZ(CrySelect, 1);
+                ViewCompat.setTranslationZ(SadSelect, 1);
+                ViewCompat.setTranslationZ(AngrySelect, 1);
+                ViewCompat.setTranslationZ(SosoSelect, 1);
+                break;
+
+            case R.id.write_diary_soso :
+                HappySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                GoodSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                CrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SadSelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                AngrySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
+                SosoSelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+
+                ViewCompat.setTranslationZ(HappySelect, 1);
+                ViewCompat.setTranslationZ(GoodSelect, 1);
+                ViewCompat.setTranslationZ(CrySelect, 1);
+                ViewCompat.setTranslationZ(SadSelect, 1);
+                ViewCompat.setTranslationZ(AngrySelect, 1);
+                ViewCompat.setTranslationZ(SosoSelect, 1);
+                break;
+        }
     }
 
 

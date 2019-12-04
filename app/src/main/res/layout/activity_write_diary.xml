@@ -37,165 +37,123 @@
             android:orientation="horizontal">
 
             <FrameLayout
-                android:id="@+id/write_diary_happy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_diary_happy"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_happy"/>
+                    android:background="@drawable/emo_diary_happy"/>
 
-                <ImageView
-                    android:id="@+id/happy_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/happy_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                <Button
+                    android:id="@+id/diary_happy_select_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_diary_good"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_diary_good"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_good"/>
+                    android:background="@drawable/emo_diary_good"/>
 
-                <ImageView
-                    android:id="@+id/good_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/good_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                <Button
+                    android:id="@+id/diary_good_select_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
 
             <FrameLayout
-                android:id="@+id/write_diary_angry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_diary_angry"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_angry"/>
+                    android:background="@drawable/emo_diary_angry"/>
 
-                <ImageView
-                    android:id="@+id/angry_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/angry_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                <Button
+                    android:id="@+id/diary_angry_select_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_diary_cry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_diary_cry"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_cry"/>
+                    android:background="@drawable/emo_diary_cry"/>
 
-                <ImageView
-                    android:id="@+id/cry_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/cry_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                <Button
+                    android:id="@+id/diary_cry_select_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_diary_sad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_diary_sad"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_sad"/>
+                    android:background="@drawable/emo_diary_sad"/>
 
-                <ImageView
-                    android:id="@+id/sad_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/sad_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                <Button
+                    android:id="@+id/diary_sad_select_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/write_diary_soso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/write_diary_soso"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/emo_diary_soso"/>
+                    android:background="@drawable/emo_diary_soso"/>
 
-                <ImageView
-                    android:id="@+id/soso_select_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_select_btn"
-                    android:layout_marginLeft="38dp"/>
-
-                <ImageView
-                    android:id="@+id/soso_unselect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/emo_diary_unselect_btn"
+                <Button
+                    android:id="@+id/diary_soso_select_btn"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/emo_diary_unselect_btn"
                     android:layout_marginLeft="38dp"/>
 
             </FrameLayout>
