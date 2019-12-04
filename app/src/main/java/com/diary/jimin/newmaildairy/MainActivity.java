@@ -13,6 +13,8 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -42,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
     private Button writeMailBtn;
 
     private FirebaseFirestore db;
+    private FirebaseUser firebaseUser;
 
+    private String userId;
     private String clickDateStr;
     private Date date;
+
 
 
     private long now = (System.currentTimeMillis() / 100000) * 100000;
@@ -53,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        /** Get User Id **/
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            userId = firebaseUser.getUid();
+            Log.d("loginch", "From Main = " + userId);
+        }
+
         init();
 
 
@@ -93,9 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 if (clickDateStr != null)
                     intent.putExtra("clickDateStr",clickDateStr);
                 else {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMDD", Locale.getDefault());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
                     date = new Date(now);
                     clickDateStr = dateFormat.format(date);
+                    Log.d("datecheck","main="+clickDateStr);
                     intent.putExtra("clickDateStr",clickDateStr);
                 }
                 startActivity(intent);
@@ -142,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         collectDiaryBtn = findViewById(R.id.main_collect_btn);
         writeMailBtn = findViewById(R.id.main_write_mail_btn);
 
+
         /** Firebase setting **/
         db = FirebaseFirestore.getInstance();
 
@@ -149,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         /** Read Firebase **/
-        db.collection("diaries")
+        db.collection(userId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

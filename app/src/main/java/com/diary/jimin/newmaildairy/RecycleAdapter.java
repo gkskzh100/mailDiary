@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -33,6 +35,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
     private OnItemClickListener mListener = null;
 
     private FirebaseFirestore db;
+    private FirebaseUser firebaseUser;
+    private String userId;
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         protected ImageView emoji;
@@ -48,6 +52,12 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
             this.content = itemView.findViewById(R.id.item_content_text);
             this.layout = itemView.findViewById(R.id.item_layout);
 
+            /** Get User Id **/
+            firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+            if (firebaseUser != null) {
+                userId = firebaseUser.getUid();
+            }
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -61,7 +71,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
                             String dateStr = ""+date.getText();
 
                             db = FirebaseFirestore.getInstance();
-                            db.collection("diaries").document(dateStr)
+                            db.collection(userId).document(dateStr)
                                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
