@@ -80,9 +80,6 @@ public class CollectDiaryActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),linearLayoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
-
         db = FirebaseFirestore.getInstance();
 
         db.collection(userId)
