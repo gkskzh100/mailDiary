@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
             userId = firebaseUser.getUid();
-            Log.d("loginch", "From Main = " + userId);
         }
 
         init();
@@ -110,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
                     date = new Date(now);
                     clickDateStr = dateFormat.format(date);
-                    Log.d("datecheck","main="+clickDateStr);
                     intent.putExtra("clickDateStr",clickDateStr);
                 }
                 startActivity(intent);
@@ -129,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         collectDiaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(getApplicationContext(), CollectDiaryActivity.class);
                 startActivity(intent);
             }
@@ -204,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         /** First Date Setting **/
         long now = System.currentTimeMillis();
         date = new Date(now);
-//        Log.d("click", "date : " + date);
         SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.getDefault());
         SimpleDateFormat month = new SimpleDateFormat("MM", Locale.getDefault());
         String formatYear = year.format(date);
@@ -219,8 +215,8 @@ public class MainActivity extends AppCompatActivity {
         int height = dm.heightPixels;
         calendarView.setTargetHeight(height / 2);
         /*************************/
-//        calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
-//        calendarView.setCurrentSelectedDayBackgroundColor(Color.TRANSPARENT);
+
+
         calendarView.shouldDrawIndicatorsBelowSelectedDays(true);
     }
 

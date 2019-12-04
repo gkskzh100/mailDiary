@@ -19,6 +19,12 @@
             android:layout_height="230dp"
             android:background="@color/mainBlueColor"
             android:orientation="horizontal" />
+        <ImageView
+            android:id="@+id/login_img"
+            android:layout_width="320dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:src="@drawable/login_img"/>
 
 
     </FrameLayout>

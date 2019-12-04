@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckLetterActivity"
+    android:background="#eeeeee"
+    android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="편지 보기"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"/>
+        <LinearLayout
+            android:background="@drawable/round_corner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/emo_diary_good"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019.10.12"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"/>
+            <ImageView
+                android:layout_width="280dp"
+                android:layout_height="150dp"
+                android:background="#eee"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"/> //영상
+            <TextView
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:text="내가 중학생 때 처음 알게 된 노래인데, 이 노래만 들
+으면 뭔가 그 당시에 풋풋했던 경험이 자연스레 떠오
+르게 된다. 누구에게나 이런 노래가 하나 쯤은 있지
+않을까? 이 노래를 들으면 슬펐던 기분은 잠시 가라앉
+을 것 같다.  "
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:lineHeight="32sp"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+    </LinearLayout>
