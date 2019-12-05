@@ -66,10 +66,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 if (user != null) {
                     // User is signed in
 
-                    /** 로그인 한번 인증했으면 바로 넘어감 **/
-                    Log.d("loginch", "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
+//                    /** 로그인 한번 인증했으면 바로 넘어감 **/
+//                    Log.d("loginch", "onAuthStateChanged:signed_in:" + user.getUid());
+//                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//                    startActivity(intent);
                 } else {
                     // User is signed out
                     Log.d("loginch", "onAuthStateChanged:signed_out");
