@@ -67,12 +67,12 @@ public class LoginActivity extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Log.d("loginch",currentUser.getUid());
-        } else {
-            Log.d("loginch","getUid fail");
-        }
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null) {
+//            Log.d("loginch",currentUser.getUid());
+//        } else {
+//            Log.d("loginch","getUid fail");
+//        }
 
     }
 
