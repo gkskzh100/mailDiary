@@ -97,7 +97,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.CustomVi
                                                 intent.putExtra("emojiStr","soso");
                                             }
                                         }
-                                        mContext.startActivity(intent);
+                                        mContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                     }
                                 }
                             });
