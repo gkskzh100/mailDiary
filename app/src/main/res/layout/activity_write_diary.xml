@@ -56,6 +56,12 @@
 
             </FrameLayout>
 
+            <Button
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@drawable/emo_selector_btn"/>
+
+
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
