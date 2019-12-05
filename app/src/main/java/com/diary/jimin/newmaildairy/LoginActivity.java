@@ -78,14 +78,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //                    SharedPreferences.Editor editor = sharedPreferences.edit();
 //                    editor.putString("firebaseId", user.getUid());
 //                    editor.commit();
-
-<<<<<<< HEAD
-=======
-//                    /** 로그인 한번 인증했으면 바로 넘어감 **/
-//                    Log.d("loginch", "onAuthStateChanged:signed_in:" + user.getUid());
-//                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                    startActivity(intent);
->>>>>>> origin/master
+                    
                 } else {
                     // User is signed out
                     Log.d("loginch", "onAuthStateChanged:signed_out");
