@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
             userId = firebaseUser.getUid();
+        } else {
+            Log.d("idch", userId);
         }
 
         init();
@@ -161,42 +163,44 @@ public class MainActivity extends AppCompatActivity {
         final List<Event> eventList = new ArrayList<>();
 
 
-        /** Read Firebase **/
-        db.collection(userId)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("dbSuccess", document.getId() + " => " + document.getData());
+        if (db != null) {
+            /** Read Firebase **/
+            db.collection(userId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d("dbSuccess", document.getId() + " => " + document.getData());
 
-                                DateFormat df = new SimpleDateFormat("yyyyMMdd");
-                                Date d;
-                                String emoji = ""+document.get("emoji");
-                                try {
-                                    d = df.parse(document.getId());
-                                    /** Event Color Change**/
-                                    if(emoji.equals("angry"))
-                                        eventList.add(new Event(getResources().getColor(R.color.calendarAngryColor),d.getTime()));
-                                    else if (emoji.equals("cry"))
-                                        eventList.add(new Event(getResources().getColor(R.color.calendarCryColor),d.getTime()));
-                                    else if (emoji.equals("good"))
-                                        eventList.add(new Event(getResources().getColor(R.color.calendarGoodColor),d.getTime()));
-                                    else if (emoji.equals("happy"))
-                                        eventList.add(new Event(getResources().getColor(R.color.calendarHappyColor),d.getTime()));
-                                    else if (emoji.equals("sad"))
-                                        eventList.add(new Event(getResources().getColor(R.color.calendarSadColor),d.getTime()));
-                                    else if (emoji.equals("soso"))
-                                        eventList.add(new Event(getResources().getColor(R.color.calendarSosoColor),d.getTime()));
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
+                                    DateFormat df = new SimpleDateFormat("yyyyMMdd");
+                                    Date d;
+                                    String emoji = ""+document.get("emoji");
+                                    try {
+                                        d = df.parse(document.getId());
+                                        /** Event Color Change**/
+                                        if(emoji.equals("angry"))
+                                            eventList.add(new Event(getResources().getColor(R.color.calendarAngryColor),d.getTime()));
+                                        else if (emoji.equals("cry"))
+                                            eventList.add(new Event(getResources().getColor(R.color.calendarCryColor),d.getTime()));
+                                        else if (emoji.equals("good"))
+                                            eventList.add(new Event(getResources().getColor(R.color.calendarGoodColor),d.getTime()));
+                                        else if (emoji.equals("happy"))
+                                            eventList.add(new Event(getResources().getColor(R.color.calendarHappyColor),d.getTime()));
+                                        else if (emoji.equals("sad"))
+                                            eventList.add(new Event(getResources().getColor(R.color.calendarSadColor),d.getTime()));
+                                        else if (emoji.equals("soso"))
+                                            eventList.add(new Event(getResources().getColor(R.color.calendarSosoColor),d.getTime()));
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             }
+                            calendarView.addEvents(eventList);
                         }
-                        calendarView.addEvents(eventList);
-                    }
-                });
+                    });
+        }
 
         /** First Date Setting **/
         long now = System.currentTimeMillis();

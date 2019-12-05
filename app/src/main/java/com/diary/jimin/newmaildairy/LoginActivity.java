@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -38,9 +39,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private GoogleSignInOptions googleSignInOptions;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    private SharedPreferences sharedPreferences;
 
 
-    private static final int RC_SIGN_IN = 1000;
+    private static final int RC_SIGN_IN = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.activity_login);
 
         init();
+//        sharedPreferences = getPreferences(MODE_PRIVATE);
+//        if(sharedPreferences.getString("firebaseId","") != null) {
+//            Log.d("loginch","이거 왜안떠 " + sharedPreferences.getString("firebasId",""));
+//            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//            startActivity(intent);
+//        }
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -62,13 +70,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+                Log.d("loginch","user : "+user);
                 if (user != null) {
                     // User is signed in
-
-                    /** 로그인 한번 인증했으면 바로 넘어감 **/
-                    Log.d("loginch", "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
+                    Log.d("loginch", "onAuthStateChanged:signed_in");
+//                    sharedPreferences = getPreferences(MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putString("firebaseId", user.getUid());
+//                    editor.commit();
+                    
                 } else {
                     // User is signed out
                     Log.d("loginch", "onAuthStateChanged:signed_out");
@@ -78,9 +88,27 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        auth.addAuthStateListener(authStateListener);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            if (result.isSuccess()) {
+                //구글 로그인 성공해서 파베에 인증
+                GoogleSignInAccount account = result.getSignInAccount();
+                firebaseAuthWithGoogle(account);
+                Log.d("loginch","구글 로그인 성공해서 파베에 인증");
+            }
+            else{
+                //구글 로그인 실패
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+//        finish();
     }
 
     private void init() {
@@ -110,22 +138,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         auth = FirebaseAuth.getInstance();
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                //구글 로그인 성공해서 파베에 인증
-                GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
-            }
-            else{
-                //구글 로그인 실패
-            }
-        }
     }
 
 
