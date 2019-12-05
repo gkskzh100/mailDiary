@@ -25,7 +25,6 @@
         <activity android:name=".CollectDiaryActivity" />
         <activity android:name=".CheckDiaryActivity" />
         <activity android:name=".WriteDiary" />
-        <activity android:name=".DiaryList" />
         <activity android:name=".MainActivity"/>
     </application>
 
