@@ -1,19 +1,40 @@
 package com.diary.jimin.newmaildairy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class WriteMail extends AppCompatActivity implements View.OnClickListener{
     int i = 0;
     private Button HappySelect,GoodSelect, CrySelect, SadSelect, AngrySelect, SosoSelect;
     private Button  EmoHappy, EmoGood, EmoCry, EmoSad, EmoAngry, EmoSoso;
+    private Button SaveBtn;
+    private EditText editMail, addLink;
+
+    private FirebaseFirestore db;
+    private FirebaseUser firebaseUser;
+    private String userId;
+    private String selectedEmo;
+    private String clickDateStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +56,10 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
         EmoAngry = findViewById(R.id.write_mail_angry);
         EmoSoso = findViewById(R.id.write_mail_soso);
 
+        SaveBtn = findViewById(R.id.mail_save_btn);
+        editMail = findViewById(R.id.edit_mail);
+        addLink = findViewById(R.id.write_mail_link);
+
         EmoHappy.setOnClickListener(this);
         EmoGood.setOnClickListener(this);
         EmoCry.setOnClickListener(this);
@@ -49,6 +74,49 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
         ViewCompat.setTranslationZ(SadSelect, 1);
         ViewCompat.setTranslationZ(AngrySelect, 1);
         ViewCompat.setTranslationZ(SosoSelect, 1);
+
+        /** Get User Id **/
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            userId = firebaseUser.getUid();
+        }
+        /** 선택한 날짜로 setText **/
+        Intent intent = getIntent();
+        clickDateStr = intent.getStringExtra("clickDateStr");
+
+//        final int year = Integer.parseInt(clickDateStr)/10000;
+//        final int month = (Integer.parseInt(clickDateStr) - (year * 10000)) / 100;
+//        final int day = Integer.parseInt(clickDateStr) % 100;
+
+        //firebase setting
+        db = FirebaseFirestore.getInstance();
+
+        SaveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Map<String, String> mail = new HashMap<>();
+                mail.put("content", String.valueOf(editMail.getText()));
+                mail.put("link", String.valueOf(addLink.getText()));
+
+                //감정 선택한거 반영시킬수 있도록 만들기
+                if(selectedEmo == null){
+                    Toast.makeText(getApplicationContext(),"감정을 선택해주세요!", Toast.LENGTH_SHORT);
+                }
+                else{
+                    mail.put("emoji",selectedEmo);
+                    db.collection(userId+"_letter").document(clickDateStr+"_"+selectedEmo).set(mail)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Log.d("firebase", "success");
+                                }
+                            });
+
+                    finish();
+                }
+            }
+        });
 
     }
 
@@ -72,6 +140,8 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "happy";
                 break;
             case R.id.write_mail_good :
                 HappySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
@@ -87,6 +157,8 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "good";
                 break;
 
             case R.id.write_mail_cry :
@@ -103,6 +175,8 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "cry";
                 break;
 
             case R.id.write_mail_sad :
@@ -119,6 +193,8 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "sad";
                 break;
 
             case R.id.write_mail_angry :
@@ -135,6 +211,8 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "angry";
                 break;
 
             case R.id.write_mail_soso :
@@ -151,6 +229,8 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "soso";
                 break;
         }
     }

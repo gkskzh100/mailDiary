@@ -206,7 +206,7 @@
                     android:background="@drawable/write_background"/>
 
                 <Button
-                    android:id="@+id/btn_Save"
+                    android:id="@+id/diary_save_btn"
                     android:layout_width="296dp"
                     android:layout_height="48dp"
                     android:text="편지 저장하기"

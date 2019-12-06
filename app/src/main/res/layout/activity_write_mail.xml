@@ -225,7 +225,7 @@
             android:gravity="center_horizontal">
 
             <EditText
-                android:id="@+id/edit_diary"
+                android:id="@+id/edit_mail"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -239,7 +239,7 @@
                 android:background="@drawable/write_background"/>
 
             <Button
-                android:id="@+id/btn_Save"
+                android:id="@+id/mail_save_btn"
                 android:layout_width="296dp"
                 android:layout_height="48dp"
                 android:text="편지 저장하기"
