@@ -138,6 +138,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), WriteMail.class);
+                if (clickDateStr != null)
+                    intent.putExtra("clickDateStr",clickDateStr);
+                else {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+                    date = new Date(now);
+                    clickDateStr = dateFormat.format(date);
+                    intent.putExtra("clickDateStr",clickDateStr);
+                }
                 startActivity(intent);
             }
         });
