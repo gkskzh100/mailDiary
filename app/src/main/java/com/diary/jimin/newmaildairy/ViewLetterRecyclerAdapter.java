@@ -1,7 +1,9 @@
 package com.diary.jimin.newmaildairy;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +29,6 @@ public class ViewLetterRecyclerAdapter extends RecyclerView.Adapter<ViewLetterRe
             super(view);
             this.date=(TextView) view.findViewById(R.id.view_letter_text);
 
-            view.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    int pos = getAdapterPosition();
-                    if(pos!=RecyclerView.NO_POSITION){
-                        // 내가 해야할 거
-                    }
-                }
-            });
         }
     }
 
