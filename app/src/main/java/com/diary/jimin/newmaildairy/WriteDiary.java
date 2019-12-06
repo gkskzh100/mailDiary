@@ -45,9 +45,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WriteDiary extends AppCompatActivity implements View.OnClickListener{
-    EditText editDiary;
-    Button SaveBtn;
-    TextView DatePickTV;
+    private EditText editDiary;
+    private Button SaveBtn;
+    private TextView DatePickTV;
     private Button HappySelect,GoodSelect, CrySelect, SadSelect, AngrySelect, SosoSelect;
     private Button  EmoHappy, EmoGood, EmoCry, EmoSad, EmoAngry, EmoSoso;
     int i = 0;
@@ -65,7 +65,7 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
 
         //findViewById
         editDiary = findViewById(R.id.edit_diary);
-        SaveBtn = findViewById(R.id.btn_Save);
+        SaveBtn = findViewById(R.id.diary_save_btn);
         DatePickTV = findViewById(R.id.viewDatePick);
 
         /**findViewById**/
