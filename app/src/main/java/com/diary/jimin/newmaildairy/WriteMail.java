@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,7 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
     private FirebaseUser firebaseUser;
     private String userId;
     private String selectedEmo;
+    private String clickDateStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,13 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
         if (firebaseUser != null) {
             userId = firebaseUser.getUid();
         }
+        /** 선택한 날짜로 setText **/
+        Intent intent = getIntent();
+        clickDateStr = intent.getStringExtra("clickDateStr");
+
+//        final int year = Integer.parseInt(clickDateStr)/10000;
+//        final int month = (Integer.parseInt(clickDateStr) - (year * 10000)) / 100;
+//        final int day = Integer.parseInt(clickDateStr) % 100;
 
         //firebase setting
         db = FirebaseFirestore.getInstance();
@@ -96,7 +105,7 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                 }
                 else{
                     mail.put("emoji",selectedEmo);
-                    db.collection(userId).document(selectedEmo).set(mail)
+                    db.collection(userId+"_letter").document(clickDateStr+"_"+selectedEmo).set(mail)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
