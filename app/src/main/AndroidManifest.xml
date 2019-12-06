@@ -15,7 +15,6 @@
         <activity android:name=".CheckLetterActivity"></activity>
         <activity android:name=".ViewLetterActivity"></activity>
         <activity android:name=".LoginActivity" android:noHistory="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,7 +24,9 @@
         <activity android:name=".CollectDiaryActivity" />
         <activity android:name=".CheckDiaryActivity" />
         <activity android:name=".WriteDiary" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

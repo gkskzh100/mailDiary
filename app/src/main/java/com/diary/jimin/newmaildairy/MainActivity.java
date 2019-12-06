@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         if (firebaseUser != null) {
             userId = firebaseUser.getUid();
         } else {
-            Log.d("idch", userId);
+//            Log.d("idch", userId);
         }
 
         init();

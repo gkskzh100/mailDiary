@@ -56,6 +56,7 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
     private String clickDateStr;
     private FirebaseUser firebaseUser;
     private String userId;
+    private String selectedEmo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,18 +147,22 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                 diary.put("date",clickDateStr);
                 diary.put("content", String.valueOf(editDiary.getText()));
 
-
-
-                diary.put("emoji","good");
                 //감정 선택한거 반영시킬수 있도록 만들기
+                if(selectedEmo == null){
+                    Toast.makeText(getApplicationContext(),"오늘의 감정을 선택해주세요!", Toast.LENGTH_SHORT);
+                }
+                else{
+                    diary.put("emoji",selectedEmo);
+                    db.collection(userId).document(clickDateStr).set(diary)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Log.d("firebase", "success");
+                                }
+                            });
 
-                db.collection(userId).document(clickDateStr).set(diary)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Log.d("firebase", "success");
-                            }
-                        });
+                    finish();
+                }
             }
         });
     }
@@ -182,6 +187,8 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "happy";
                 break;
             case R.id.write_diary_good :
                 HappySelect.setBackgroundResource(R.drawable.emo_diary_unselect_btn);
@@ -197,6 +204,8 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "good";
                 break;
 
             case R.id.write_diary_cry :
@@ -213,6 +222,8 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "cry";
                 break;
 
             case R.id.write_diary_sad :
@@ -229,6 +240,8 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "sad";
                 break;
 
             case R.id.write_diary_angry :
@@ -245,6 +258,8 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "angry";
                 break;
 
             case R.id.write_diary_soso :
@@ -261,6 +276,8 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                 ViewCompat.setTranslationZ(SadSelect, 1);
                 ViewCompat.setTranslationZ(AngrySelect, 1);
                 ViewCompat.setTranslationZ(SosoSelect, 1);
+
+                selectedEmo = "soso";
                 break;
         }
     }
