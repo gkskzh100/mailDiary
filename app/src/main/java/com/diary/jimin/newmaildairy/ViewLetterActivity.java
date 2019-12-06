@@ -23,7 +23,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -70,6 +73,7 @@ public class ViewLetterActivity extends AppCompatActivity {
         mAdapter=new ViewLetterRecyclerAdapter(dataSet);
         mRecyclerView.setAdapter(mAdapter);
 
+        //db로 읽어옴 지금은 일기 읽어오는디 편지 읽어오게 수정해야함!
         db = FirebaseFirestore.getInstance();
 
         db.collection(userId)
@@ -80,8 +84,15 @@ public class ViewLetterActivity extends AppCompatActivity {
                         int i = 0;
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String string = new String("" + document.get("date"));
-                                dataSet.add(i, string);
+                                String oldstring = new String("" + document.get("date"));
+                                Date date = null;
+                                try {
+                                    date = new SimpleDateFormat("yyyyMMdd").parse(oldstring);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                String newstring = new SimpleDateFormat("yyyy년 MM월 dd일의 편지").format(date);
+                                dataSet.add(i, newstring);
                                 mAdapter.notifyItemInserted(i);
                                 i++;
                             }

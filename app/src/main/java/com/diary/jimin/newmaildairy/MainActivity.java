@@ -1,5 +1,6 @@
 package com.diary.jimin.newmaildairy;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -121,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
         mailBoxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), ViewLetterActivity.class);
+                startActivity(intent);
             }
         });
 

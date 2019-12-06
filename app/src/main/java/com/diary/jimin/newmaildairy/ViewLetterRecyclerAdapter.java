@@ -14,20 +14,36 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewLetterRecyclerAdapter extends RecyclerView.Adapter<ViewLetterRecyclerAdapter.ViewHolder>{
     private ArrayList<String> mData;
 
+    private RecycleAdapter.OnItemClickListener mListener = null;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    private FirebaseFirestore db;
+    private FirebaseUser firebaseUser;
+    private String userId;
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView date;
 
         public ViewHolder (View view){
             super(view);
             this.date=(TextView) view.findViewById(R.id.view_letter_text);
+
+            firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+            if (firebaseUser != null) {
+                userId = firebaseUser.getUid();
+            }
+            //편지 보기 연결하기 !
+
 
         }
     }
