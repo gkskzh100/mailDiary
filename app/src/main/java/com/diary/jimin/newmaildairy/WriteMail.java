@@ -10,10 +10,17 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class WriteMail extends AppCompatActivity implements View.OnClickListener{
     int i = 0;
     private Button HappySelect,GoodSelect, CrySelect, SadSelect, AngrySelect, SosoSelect;
     private Button  EmoHappy, EmoGood, EmoCry, EmoSad, EmoAngry, EmoSoso;
+
+    private FirebaseFirestore db;
+    private FirebaseUser firebaseUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

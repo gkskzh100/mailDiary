@@ -131,8 +131,37 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                     if(documentSnapshot.exists()) {     //DB에 데이터가 있다면
                         editDiary.setText(""+documentSnapshot.get("content"));  //데이터 가져와서 Text에 넣어줌
 
-
-                        //감정도 선택되게 만들어야됨
+                        //저장된 감정 불러오기
+                        if(documentSnapshot.get("emoji").equals("good")){
+                            selectedEmo = "good";
+                            GoodSelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                            ViewCompat.setTranslationZ(GoodSelect, 1);
+                        }
+                        else if(documentSnapshot.get("emoji").equals("happy")){
+                            selectedEmo = "happy";
+                            HappySelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                            ViewCompat.setTranslationZ(HappySelect, 1);
+                        }
+                        else if(documentSnapshot.get("emoji").equals("cry")){
+                            selectedEmo = "cry";
+                            CrySelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                            ViewCompat.setTranslationZ(CrySelect, 1);
+                        }
+                        else if(documentSnapshot.get("emoji").equals("sad")){
+                            selectedEmo = "sad";
+                            SadSelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                            ViewCompat.setTranslationZ(SadSelect, 1);
+                        }
+                        else if(documentSnapshot.get("emoji").equals("angry")){
+                            selectedEmo = "angry";
+                            AngrySelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                            ViewCompat.setTranslationZ(AngrySelect, 1);
+                        }
+                        else if(documentSnapshot.get("emoji").equals("soso")){
+                            selectedEmo = "soso";
+                            SosoSelect.setBackgroundResource(R.drawable.emo_diary_select_btn);
+                            ViewCompat.setTranslationZ(SosoSelect, 1);
+                        }
                     }
                 }
             }
