@@ -5,10 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CheckLetterActivity extends AppCompatActivity {
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+public class CheckLetterActivity extends YouTubeBaseActivity {
+
+    YouTubePlayerView youtubeView;
+    YouTubePlayer.OnInitializedListener listener;
+    Button button;
+    String link;
 
     private ImageView checkLetterImg;
     private TextView checkLetterDate;
@@ -45,12 +57,35 @@ public class CheckLetterActivity extends AppCompatActivity {
         else if(extras.equals("soso"))
             checkLetterImg.setImageResource(R.drawable.emo_diary_soso);
 
+        link = intent.getStringExtra("LinkStr");
+
+        listener=new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                youTubePlayer.loadVideo("57sYinArEC4"); //일단 NCT 영상 해놨는데 추후에 바꿀 것
+                //youTubePlayer.loadVideo(link); <-이걸로
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                youtubeView.initialize("AIzaSyCydLBimEAQ23U42DWVqUAs5HNqiVhbFcM", listener);
+            }
+        });
     }
 
 
-    private void init(){
+
+    private void init() {
         checkLetterImg = findViewById(R.id.check_letter_emoji);
         checkLetterDate = findViewById(R.id.check_letter_date);
         checkLetterContent = findViewById(R.id.check_letter_content);
+        button = (Button) findViewById(R.id.youtubeButton);
+        youtubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
     }
 }

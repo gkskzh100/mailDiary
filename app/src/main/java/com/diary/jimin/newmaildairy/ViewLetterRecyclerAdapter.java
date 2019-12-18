@@ -33,6 +33,7 @@ public class ViewLetterRecyclerAdapter extends RecyclerView.Adapter<ViewLetterRe
     private FirebaseFirestore db;
     private FirebaseUser firebaseUser;
     private String userId;
+    private String link;
 
     private Context mContext;
 
@@ -91,12 +92,14 @@ public class ViewLetterRecyclerAdapter extends RecyclerView.Adapter<ViewLetterRe
                                     if (task.isSuccessful()) {
                                         Intent intent = new Intent(view.getContext(),CheckLetterActivity.class);
                                         DocumentSnapshot documentSnapshot = task.getResult();
-                                        Log.d(this.getClass().getName(),"DB4 "+view.getContext());
                                         if (documentSnapshot.exists()) {
-                                            Log.d(this.getClass().getName(),"DB안에 들어감");
                                             intent.putExtra("dateStr",""+documentSnapshot.get("date"));
                                             intent.putExtra("letterStr",""+documentSnapshot.get("letter"));
-                                            Log.d("dateStr",""+documentSnapshot.get("date"));
+
+                                            //나중에 DB에 link 들어오면 주석 풀 것
+                                            //link = getYoutubeIDFromURL((String)documentSnapshot.get("link"));
+                                            //intent.putExtra("linkStr",link);
+                                            //Log.d("linkStr",""+link);
 
                                             if (documentSnapshot.get("emoji").equals("good")) {
                                                 intent.putExtra("emojiStr","good");
@@ -158,6 +161,29 @@ public class ViewLetterRecyclerAdapter extends RecyclerView.Adapter<ViewLetterRe
     public int getItemCount() {
 
         return (null != mData ? mData.size() : 0);
+    }
+
+    public String getYoutubeIDFromURL(String temp) {
+
+
+        if (temp.equals("") || temp == null) {
+            return "error";
+        } else {
+            int idx = 0;
+            if (temp.contains("be/")) {
+                idx = temp.indexOf("be/");
+            }
+            else if (temp.contains("?v=")) {
+                idx = temp.indexOf("?v=");
+            } else {
+                return temp;
+            }
+            String result = temp.substring(idx + 3);
+            if (result.length() >= 12) {
+                result = result.substring(0, 12).trim();
+            }
+            return result;
+        }
     }
     
 }
