@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,7 +36,7 @@ import java.util.List;
 
 public class ViewLetterActivity extends AppCompatActivity {
 
-    private ArrayList<String> dataSet;
+    private ArrayList<ItemDictionary> dataSet;
     private RecyclerView mRecyclerView;
     private ViewLetterRecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -55,8 +56,15 @@ public class ViewLetterActivity extends AppCompatActivity {
             userId = firebaseUser.getUid();
         }
 
+
+
         init();
 
+        mAdapter.setOnItemClickListener(new ViewLetterRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+            }
+        });
     }
 
 
@@ -70,10 +78,8 @@ public class ViewLetterActivity extends AppCompatActivity {
 
         dataSet = new ArrayList<>();
 
-        mAdapter=new ViewLetterRecyclerAdapter(dataSet);
+        mAdapter=new ViewLetterRecyclerAdapter(getApplicationContext(),dataSet);
         mRecyclerView.setAdapter(mAdapter);
-
-        //db로 읽어옴 지금은 일기 읽어오는디 편지 읽어오게 수정해야함!
         db = FirebaseFirestore.getInstance();
 
         db.collection(userId)
@@ -82,17 +88,22 @@ public class ViewLetterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         int i = 0;
+                        Log.d(this.getClass().getName(),"DB1");
                         if (task.isSuccessful()) {
+                            Log.d(this.getClass().getName(),"DB2");
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String oldstring = new String("" + document.get("date"));
                                 Date date = null;
                                 try {
+                                    Log.d(this.getClass().getName(),"DB4");
                                     date = new SimpleDateFormat("yyyyMMdd").parse(oldstring);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
+                                Log.d(this.getClass().getName(),"DB5");
                                 String newstring = new SimpleDateFormat("yyyy년 MM월 dd일의 편지").format(date);
-                                dataSet.add(i, newstring);
+                                ItemDictionary itemDictionary = new ItemDictionary(oldstring,newstring);
+                                dataSet.add(i,itemDictionary);
                                 mAdapter.notifyItemInserted(i);
                                 i++;
                             }
