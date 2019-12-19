@@ -1,9 +1,11 @@
 package com.diary.jimin.newmaildairy;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firestore.v1.Write;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +36,7 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
     private FirebaseFirestore db;
     private FirebaseUser firebaseUser;
     private String userId;
-    private String selectedEmo;
+    private String selectedEmo = null;
     private String clickDateStr;
 
     @Override
@@ -112,11 +115,31 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                                 }
                             });
                     /** 여기에 팝업창 띄우쟈 **/
-                    finish();
+
+                    show();
                 }
             }
         });
 
+    }
+
+    private void show(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(WriteMail.this);
+        dialog  .setTitle("주의사항")
+                .setMessage("편지를 보내면 수정하거나 다시 볼 수 없습니다. 그래도 전송할까요?")
+                .setPositiveButton("전송", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .setNeutralButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .create().show();
     }
 
     @Override
