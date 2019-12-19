@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/mainBlueColor">
+    android:background="@drawable/main_background">
 
     <!--   달력   -->
     <LinearLayout
@@ -63,7 +63,7 @@
                     app:compactCalendarTextSize="15sp"
                     app:compactCalendarBackgroundColor="#FFFFFF"
                     app:compactCalendarTextColor="#000000"
-                    app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/mainBlueColor"
                     app:compactCalendarCurrentDayBackgroundColor="#00FFFFFF"
                     app:compactCalendarMultiEventIndicatorColor="#fff"
                     />
