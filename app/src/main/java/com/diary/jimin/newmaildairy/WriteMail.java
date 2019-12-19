@@ -104,15 +104,14 @@ public class WriteMail extends AppCompatActivity implements View.OnClickListener
                     Toast.makeText(getApplicationContext(),"감정을 선택해주세요!", Toast.LENGTH_SHORT);
                 }
                 else{
-                    mail.put("emoji",selectedEmo);
-                    db.collection(userId+"_letter").document(clickDateStr+"_"+selectedEmo).set(mail)
+                    db.collection(userId).document(selectedEmo).collection("letter").document().set(mail)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Log.d("firebase", "success");
+                                    Log.d("firebase","success");
                                 }
                             });
-
+                    /** 여기에 팝업창 띄우쟈 **/
                     finish();
                 }
             }
