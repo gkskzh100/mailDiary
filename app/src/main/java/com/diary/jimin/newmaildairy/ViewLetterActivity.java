@@ -101,11 +101,15 @@ public class ViewLetterActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                                 Log.d(this.getClass().getName(),"DB5");
-                                String newstring = new SimpleDateFormat("yyyy년 MM월 dd일의 편지").format(date);
-                                ItemDictionary itemDictionary = new ItemDictionary(oldstring,newstring);
-                                dataSet.add(i,itemDictionary);
-                                mAdapter.notifyItemInserted(i);
-                                i++;
+                                try{
+                                    String newstring = new SimpleDateFormat("yyyy년 MM월 dd일의 편지").format(date);
+                                    ItemDictionary itemDictionary = new ItemDictionary(oldstring,newstring);
+                                    dataSet.add(i,itemDictionary);
+                                    mAdapter.notifyItemInserted(i);
+                                    i++;
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
