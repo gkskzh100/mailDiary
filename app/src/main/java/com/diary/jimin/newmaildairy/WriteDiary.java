@@ -31,7 +31,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.BufferedReader;
@@ -41,10 +41,13 @@ import java.io.FileReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class WriteDiary extends AppCompatActivity implements View.OnClickListener{
     private EditText editDiary;
@@ -174,7 +177,7 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onClick(View view) {
 
-                Map<String, String> diary = new HashMap<>();
+                final Map<String, String> diary = new HashMap<>();
                 diary.put("date",clickDateStr);
                 diary.put("content", String.valueOf(editDiary.getText()));
 
@@ -192,6 +195,61 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                                 }
                             });
 
+
+                    db.collection(userId).document(selectedEmo).collection("letter")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful()) {
+                                        List<String> randomList = new ArrayList<>();
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            randomList.add(document.getId());
+                                            Log.d("letterCheck", document.getId() + " => " + document.getData());
+                                        }
+                                        if (!randomList.isEmpty()) {
+                                            final String randomDocument = randomList.get(new Random().nextInt(randomList.size()));
+                                            Log.d("letterCheck",randomDocument);
+
+                                            /**랜덤으로 가져와졌음
+                                             * 가져온 애를 이제 내가 저장한 일기에 편지로 넣어야돼
+                                             * 넣으면 letter Document에서 지워주기 **/
+                                            final DocumentReference letterDocument = db.collection(userId).document(selectedEmo).collection("letter").document(randomDocument);
+                                            letterDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                    if(task.isSuccessful()) {
+                                                        DocumentSnapshot documentSnapshot = task.getResult();
+                                                        if(documentSnapshot.exists()) {
+                                                            Log.d("letterCheck","content : " + documentSnapshot.get("content"));
+                                                            Log.d("letterCheck","link : " + documentSnapshot.get("link"));
+                                                            diary.put("letter", "" + documentSnapshot.get("content"));
+                                                            diary.put("link", "" + documentSnapshot.get("link"));
+
+                                                            db.collection(userId).document(clickDateStr).set(diary)
+                                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                        @Override
+                                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                                            Log.d("firebase","success");
+                                                                        }
+                                                                    });
+
+                                                            letterDocument.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    Log.d("letterCheck","삭제완료");
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                }
+                                            });
+
+//                                            db.collection(userId).document(clickDateStr)
+                                        }
+                                    }
+                                }
+                            });
                     finish();
                 }
             }
