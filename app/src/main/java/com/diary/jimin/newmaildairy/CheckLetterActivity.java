@@ -1,5 +1,6 @@
 package com.diary.jimin.newmaildairy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,10 +11,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class CheckLetterActivity extends YouTubeBaseActivity {
 
@@ -26,12 +33,17 @@ public class CheckLetterActivity extends YouTubeBaseActivity {
     private TextView checkLetterDate;
     private TextView checkLetterContent;
 
+    private FirebaseFirestore db;
+    private FirebaseUser firebaseUser;
+    private String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_letter);
 
         init();
+
 
         String extras;
         Intent intent = getIntent();
@@ -40,8 +52,26 @@ public class CheckLetterActivity extends YouTubeBaseActivity {
         checkLetterDate.setText(extras);
         Log.d("dateStr","checkLetterActivity = "+extras);
 
-        extras = intent.getStringExtra("LetterStr");
-        checkLetterContent.setText(extras);
+        /** Get User Id **/
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            userId = firebaseUser.getUid();
+        }
+
+        db = FirebaseFirestore.getInstance();
+        db.collection(userId).document(extras)
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if (documentSnapshot.exists()) {
+                        checkLetterContent.setText(""+documentSnapshot.get("letter"));
+                        link = ""+documentSnapshot.get("link");
+                    }
+                }
+            }
+        });
 
         extras = intent.getStringExtra("emojiStr");
         if(extras.equals("angry"))
@@ -57,13 +87,11 @@ public class CheckLetterActivity extends YouTubeBaseActivity {
         else if(extras.equals("soso"))
             checkLetterImg.setImageResource(R.drawable.emo_diary_soso);
 
-        link = intent.getStringExtra("LinkStr");
-
         listener=new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                youTubePlayer.loadVideo("57sYinArEC4"); //일단 NCT 영상 해놨는데 추후에 바꿀 것
-                //youTubePlayer.loadVideo(link); <-이걸로
+//                youTubePlayer.loadVideo("57sYinArEC4"); //일단 NCT 영상 해놨는데 추후에 바꿀 것
+                youTubePlayer.loadVideo(link);
             }
 
             @Override
