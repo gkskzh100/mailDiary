@@ -92,20 +92,19 @@ public class ViewLetterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(this.getClass().getName(),"DB2");
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String oldstring = new String("" + document.get("date"));
+                                String oldstring = "" + document.get("date");
                                 Date date = null;
                                 try {
-                                    Log.d(this.getClass().getName(),"DB4");
                                     date = new SimpleDateFormat("yyyyMMdd").parse(oldstring);
+                                    String newstring = new SimpleDateFormat("yyyy년 MM월 dd일의 편지").format(date);
+                                    ItemDictionary itemDictionary = new ItemDictionary(oldstring,newstring);
+                                    dataSet.add(i,itemDictionary);
+                                    mAdapter.notifyItemInserted(i);
+                                    i++;
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
                                 Log.d(this.getClass().getName(),"DB5");
-                                String newstring = new SimpleDateFormat("yyyy년 MM월 dd일의 편지").format(date);
-                                ItemDictionary itemDictionary = new ItemDictionary(oldstring,newstring);
-                                dataSet.add(i,itemDictionary);
-                                mAdapter.notifyItemInserted(i);
-                                i++;
                             }
                         }
                     }

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/mainBlueColor">
+    android:background="@drawable/main_background">
 
     <!--   달력   -->
     <LinearLayout
@@ -63,7 +63,7 @@
                     app:compactCalendarTextSize="15sp"
                     app:compactCalendarBackgroundColor="#FFFFFF"
                     app:compactCalendarTextColor="#000000"
-                    app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/mainBlueColor"
                     app:compactCalendarCurrentDayBackgroundColor="#00FFFFFF"
                     app:compactCalendarMultiEventIndicatorColor="#fff"
                     />
@@ -86,35 +86,35 @@ CurrentDayBackgroundColor == 현재 날짜 동그라미
         android:paddingBottom="24dp"
         android:paddingEnd="24dp"
         android:paddingStart="24dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <Button
             android:id="@+id/main_mailbox_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="우체통"/>
+            android:layout_width="21.6dp"
+            android:layout_height="16.2dp"
+            android:background="@drawable/emo_diary_menu_write_letter_btn"/>
 
         <Button
             android:id="@+id/main_write_mail_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="우편함"/>
+            android:layout_width="21.6dp"
+            android:layout_height="21.6dp"
+            android:layout_marginLeft="72dp"
+            android:background="@drawable/emo_diary_menu_read_letter_btn"/>
 
         <Button
             android:id="@+id/main_write_diary_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="일기쓰기"/>
+            android:layout_width="21.6dp"
+            android:layout_height="21.6dp"
+            android:layout_marginLeft="72dp"
+            android:background="@drawable/emo_diary_menu_write_diary_btn"/>
 
         <Button
             android:id="@+id/main_collect_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="모아보기"/>
+            android:layout_width="21.6dp"
+            android:layout_height="16.8dp"
+            android:layout_marginLeft="72dp"
+            android:background="@drawable/emo_diary_menu_read_diary_btn"/>
 
 
     </LinearLayout>
