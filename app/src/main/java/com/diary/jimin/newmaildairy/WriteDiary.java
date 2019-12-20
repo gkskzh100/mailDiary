@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.BufferedReader;
@@ -39,10 +40,13 @@ import java.io.FileReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class WriteDiary extends AppCompatActivity implements View.OnClickListener{
     private EditText editDiary;
@@ -190,6 +194,33 @@ public class WriteDiary extends AppCompatActivity implements View.OnClickListene
                                 }
                             });
 
+
+                    db.collection(userId).document(selectedEmo).collection("letter")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful()) {
+                                        List<String> randomList = new ArrayList<>();
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            randomList.add(document.getId());
+                                            Log.d("letterCheck", document.getId() + " => " + document.getData());
+                                        }
+                                        if (!randomList.isEmpty()) {
+                                            String randomDocument = randomList.get(new Random().nextInt(randomList.size()));
+                                            Log.d("letterCheck",randomDocument);
+
+                                            /**랜덤으로 가져와졌음
+                                             * 가져온 애를 이제 내가 저장한 일기에 편지로 넣어야돼
+                                             * 넣으면 letter Document에서 지워주기 **/
+//                                            DocumentReference letterDocument = db.collection(userId).document(selectedEmo).collection("letter").document(randomDocument);
+//                                            letterDocument.get().addOncom
+
+//                                            db.collection(userId).document(clickDateStr)
+                                        }
+                                    }
+                                }
+                            });
                     finish();
                 }
             }
